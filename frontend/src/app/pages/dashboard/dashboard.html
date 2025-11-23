@@ -1,0 +1,65 @@
+<div class="dashboard">
+  <h1>Dashboard - Planta de Tratamiento</h1>
+  
+  <div class="stats-grid">
+    <div class="stat-card primary">
+      <div class="stat-icon">
+        <span class="material-icons">water_drop</span>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">Producción Hoy</div>
+        <div class="stat-value">{{ produccionHoy() }} m³</div>
+      </div>
+    </div>
+    
+    <div class="stat-card success">
+      <div class="stat-icon">
+        <span class="material-icons">filter_alt</span>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">Filtros Activos</div>
+        <div class="stat-value">{{ filtrosActivos() }}/6</div>
+      </div>
+    </div>
+    
+    <div class="stat-card warning">
+      <div class="stat-icon">
+        <span class="material-icons">science</span>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">Químicos Bajo Stock</div>
+        <div class="stat-value">{{ quimicosBajoStock() }}</div>
+      </div>
+    </div>
+    
+    <div class="stat-card info">
+      <div class="stat-icon">
+        <span class="material-icons">people</span>
+      </div>
+      <div class="stat-content">
+        <div class="stat-label">Operadores Activos</div>
+        <div class="stat-value">{{ operadoresActivos() }}</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="dashboard-content">
+    <div class="card">
+      <h2>Accesos Rápidos</h2>
+      <div class="quick-actions">
+        <button class="action-btn" routerLink="/control-operacion">
+          <span class="material-icons">add_circle</span>
+          Nuevo Control de Operación
+        </button>
+        <button class="action-btn" routerLink="/produccion-filtros">
+          <span class="material-icons">add_circle</span>
+          Registrar Producción
+        </button>
+        <button class="action-btn" routerLink="/quimicos">
+          <span class="material-icons">inventory</span>
+          Ver Stock de Químicos
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
