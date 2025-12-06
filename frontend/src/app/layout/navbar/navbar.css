@@ -1,0 +1,27 @@
+.navbar-container {
+  margin-bottom: 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1976d2;
+  padding: 0 1rem;
+}
+
+.brand-text {
+  white-space: nowrap;
+}
+
+:host ::ng-deep .p-menubar {
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #dee2e6;
+}
+
+:host ::ng-deep .p-menubar-root-list {
+  gap: 0.5rem;
+}

@@ -1,0 +1,138 @@
+<div class="form-container">
+  <div class="header-section">
+    <p-button icon="pi pi-arrow-left" label="Volver" [text]="true" (onClick)="goBack()"></p-button>
+    <div class="title-section">
+      <h1><i class="pi pi-shopping-cart"></i> Consumo de Químicos</h1>
+      <p>Control Diario Detallado del Consumo de Químicos</p>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <p-card header="Información General" [style]="{'margin-bottom': '1.5rem'}">
+      <div class="p-grid">
+        <div class="p-col-12 p-md-6">
+          <p-floatlabel>
+            <input pInputText id="fecha" type="date" formControlName="fecha" class="w-full" />
+            <label for="fecha">Fecha *</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-col-12 p-md-6">
+          <p-floatlabel>
+            <p-select inputId="quimico_id" formControlName="quimico_id" [options]="quimicos" placeholder="Seleccione un químico" styleClass="w-full"></p-select>
+            <label for="quimico_id">Químico *</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </p-card>
+
+    <p-card header="Bodega" styleClass="card-section">
+      <div class="p-grid">
+        <div class="p-col-12 p-md-4">
+          <p-floatlabel>
+            <p-inputnumber inputId="bodega_ingresa" formControlName="bodega_ingresa" suffix=" unidades" styleClass="w-full"></p-inputnumber>
+            <label for="bodega_ingresa">Ingresa</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <p-floatlabel>
+            <p-inputnumber inputId="bodega_egresa" formControlName="bodega_egresa" suffix=" unidades" styleClass="w-full"></p-inputnumber>
+            <label for="bodega_egresa">Egresa</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-col-12 p-md-4">
+          <p-floatlabel>
+            <p-inputnumber inputId="bodega_stock" formControlName="bodega_stock" suffix=" unidades" styleClass="w-full"></p-inputnumber>
+            <label for="bodega_stock">Stock</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </p-card>
+
+    <p-card header="Tanque N°1" styleClass="card-section">
+      <div class="p-grid">
+        <div class="p-col-12 p-md-3">
+          <p-floatlabel>
+            <input pInputText id="tanque1_hora" type="time" formControlName="tanque1_hora" class="w-full" />
+            <label for="tanque1_hora">Hora</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-col-12 p-md-3">
+          <p-floatlabel>
+            <p-inputnumber inputId="tanque1_lectura_inicial" formControlName="tanque1_lectura_inicial" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" cm" styleClass="w-full"></p-inputnumber>
+            <label for="tanque1_lectura_inicial">Lectura Inicial</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-col-12 p-md-3">
+          <p-floatlabel>
+            <p-inputnumber inputId="tanque1_lectura_final" formControlName="tanque1_lectura_final" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" cm" styleClass="w-full"></p-inputnumber>
+            <label for="tanque1_lectura_final">Lectura Final</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-col-12 p-md-3">
+          <p-floatlabel>
+            <p-inputnumber inputId="tanque1_consumo" formControlName="tanque1_consumo" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" cm" styleClass="w-full"></p-inputnumber>
+            <label for="tanque1_consumo">Consumo</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </p-card>
+
+    <p-card header="Tanque N°2 (Opcional - Solo Sulfato)" styleClass="card-section">
+      <div class="p-grid">
+        <div class="p-col-12 p-md-3">
+          <p-floatlabel>
+            <input pInputText id="tanque2_hora" type="time" formControlName="tanque2_hora" class="w-full" />
+            <label for="tanque2_hora">Hora</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-col-12 p-md-3">
+          <p-floatlabel>
+            <p-inputnumber inputId="tanque2_lectura_inicial" formControlName="tanque2_lectura_inicial" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" cm" styleClass="w-full"></p-inputnumber>
+            <label for="tanque2_lectura_inicial">Lectura Inicial</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-col-12 p-md-3">
+          <p-floatlabel>
+            <p-inputnumber inputId="tanque2_lectura_final" formControlName="tanque2_lectura_final" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" cm" styleClass="w-full"></p-inputnumber>
+            <label for="tanque2_lectura_final">Lectura Final</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-col-12 p-md-3">
+          <p-floatlabel>
+            <p-inputnumber inputId="tanque2_consumo" formControlName="tanque2_consumo" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" cm" styleClass="w-full"></p-inputnumber>
+            <label for="tanque2_consumo">Consumo</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </p-card>
+
+    <p-card header="Total y Observaciones" styleClass="card-section">
+      <div class="p-grid">
+        <div class="p-col-12 p-md-6">
+          <p-floatlabel>
+            <p-inputnumber inputId="total_consumo" formControlName="total_consumo" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" cm" styleClass="w-full"></p-inputnumber>
+            <label for="total_consumo">Consumo Total</label>
+          </p-floatlabel>
+        </div>
+        <div class="p-col-12">
+          <p-floatlabel>
+            <textarea pInputTextarea id="observaciones" formControlName="observaciones" rows="4" class="w-full"></textarea>
+            <label for="observaciones">Observaciones</label>
+          </p-floatlabel>
+        </div>
+      </div>
+    </p-card>
+
+    @if (successMessage) {
+      <p-message severity="success" [text]="successMessage" styleClass="message-full"></p-message>
+    }
+    @if (errorMessage) {
+      <p-message severity="error" [text]="errorMessage" styleClass="message-full"></p-message>
+    }
+
+    <div class="form-actions">
+      <p-button label="Cancelar" icon="pi pi-times" [outlined]="true" severity="secondary" (onClick)="goBack()"></p-button>
+      <p-button type="submit" [label]="loading ? 'Guardando...' : 'Guardar Registro'" icon="pi pi-save" [disabled]="form.invalid || loading" [loading]="loading"></p-button>
+    </div>
+  </form>
+</div>

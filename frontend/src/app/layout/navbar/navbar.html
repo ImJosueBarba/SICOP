@@ -1,15 +1,10 @@
-<header class="navbar">
-  <div class="navbar-brand">
-    <h1>🌊 Planta La Esperanza</h1>
-    <span class="subtitle">Sistema de Control y Operación</span>
-  </div>
-  
-  <div class="navbar-actions">
-    <button class="btn-icon" title="Notificaciones">
-      <span class="material-icons">notifications</span>
-    </button>
-    <button class="btn-icon" title="Perfil">
-      <span class="material-icons">account_circle</span>
-    </button>
-  </div>
-</header>
+<div class="navbar-container">
+  <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+      <div class="brand">
+        <i class="pi pi-tint" style="font-size: 1.5rem; margin-right: 0.5rem;"></i>
+        <span class="brand-text">Planta La Esperanza</span>
+      </div>
+    </ng-template>
+  </p-menubar>
+</div>
