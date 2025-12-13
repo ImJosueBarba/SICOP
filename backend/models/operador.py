@@ -3,9 +3,16 @@ Modelo de Operadores de la planta
 """
 
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, Boolean, Date, DateTime
+import enum
+from sqlalchemy import Column, Integer, String, Boolean, Date, DateTime, Enum
 from sqlalchemy.orm import relationship
 from . import Base
+
+
+class UserRole(str, enum.Enum):
+    ADMIN = "ADMIN"
+    VISUALIZADOR = "VISUALIZADOR"
+    OPERADOR = "OPERADOR"
 
 
 class Operador(Base):
@@ -19,6 +26,12 @@ class Operador(Base):
     telefono = Column(String(20))
     activo = Column(Boolean, default=True)
     fecha_contratacion = Column(Date)
+    
+    # Campos de Autenticación
+    username = Column(String(50), unique=True, index=True, nullable=False)
+    hashed_password = Column(String(255), nullable=False)
+    rol = Column(Enum(UserRole), default=UserRole.OPERADOR)
+    
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     

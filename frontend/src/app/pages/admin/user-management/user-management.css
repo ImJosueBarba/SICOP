@@ -1,0 +1,26 @@
+:host ::ng-deep .p-dialog .p-button {
+    min-width: 6rem;
+}
+
+.status-active {
+    color: #22c55e;
+    font-weight: 700;
+}
+
+.status-inactive {
+    color: #ef4444;
+    font-weight: 700;
+}
+
+.field {
+    margin-bottom: 1rem;
+}
+
+.formgrid.grid {
+    display: flex;
+    gap: 1rem;
+}
+
+.formgrid .col {
+    flex: 1;
+}

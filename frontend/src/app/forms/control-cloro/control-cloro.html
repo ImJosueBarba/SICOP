@@ -9,8 +9,11 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <p-card header="Fecha y Documento" [style]="{'margin-bottom': '1.5rem'}">
       <div class="p-grid">
-        <div class="p-col-12 p-md-6"><p-floatlabel><input pInputText id="fecha_mes" type="date" formControlName="fecha_mes" class="w-full" /><label for="fecha_mes">Fecha *</label></p-floatlabel></div>
-        <div class="p-col-12 p-md-6"><p-floatlabel><input pInputText id="documento_soporte" formControlName="documento_soporte" class="w-full" /><label for="documento_soporte">Documento Soporte</label></p-floatlabel></div>
+        <div class="p-col-12 p-md-6"><p-floatlabel><input pInputText id="fecha_mes" type="date"
+              formControlName="fecha_mes" class="w-full" /><label for="fecha_mes">Fecha *</label></p-floatlabel></div>
+        <div class="p-col-12 p-md-6"><p-floatlabel><input pInputText id="documento_soporte"
+              formControlName="documento_soporte" class="w-full" /><label for="documento_soporte">Documento
+              Soporte</label></p-floatlabel></div>
       </div>
     </p-card>
 
@@ -18,30 +21,44 @@
       <div class="column-left">
         <p-card header="Proveedor y Especificaciones">
           <div class="p-grid">
-            <div class="p-col-12"><p-floatlabel><input pInputText id="proveedor_solicitante" formControlName="proveedor_solicitante" class="w-full" /><label for="proveedor_solicitante">Proveedor/Solicitante</label></p-floatlabel></div>
-            <div class="p-col-12"><p-floatlabel><input pInputText id="codigo" formControlName="codigo" class="w-full" /><label for="codigo">Código</label></p-floatlabel></div>
-            <div class="p-col-12"><p-floatlabel><input pInputText id="especificacion" formControlName="especificacion" class="w-full" /><label for="especificacion">Especificación</label></p-floatlabel></div>
+            <div class="p-col-12"><p-floatlabel><input pInputText id="proveedor_solicitante"
+                  formControlName="proveedor_solicitante" class="w-full" /><label
+                  for="proveedor_solicitante">Proveedor/Solicitante</label></p-floatlabel></div>
+            <div class="p-col-12"><p-floatlabel><input pInputText id="codigo" formControlName="codigo"
+                  class="w-full" /><label for="codigo">Código</label></p-floatlabel></div>
+            <div class="p-col-12"><p-floatlabel><input pInputText id="especificacion" formControlName="especificacion"
+                  class="w-full" /><label for="especificacion">Especificación</label></p-floatlabel></div>
           </div>
         </p-card>
       </div>
       <div class="column-right">
         <p-card header="Movimientos de Inventario">
           <div class="p-grid">
-            <div class="p-col-12"><p-floatlabel><p-inputnumber inputId="cantidad_entra" formControlName="cantidad_entra" suffix=" kg" styleClass="w-full"></p-inputnumber><label for="cantidad_entra">Entra</label></p-floatlabel></div>
-            <div class="p-col-12"><p-floatlabel><p-inputnumber inputId="cantidad_sale" formControlName="cantidad_sale" suffix=" kg" styleClass="w-full"></p-inputnumber><label for="cantidad_sale">Sale</label></p-floatlabel></div>
-            <div class="p-col-12"><p-floatlabel><p-inputnumber inputId="cantidad_saldo" formControlName="cantidad_saldo" suffix=" kg" styleClass="w-full"></p-inputnumber><label for="cantidad_saldo">Saldo</label></p-floatlabel></div>
+            <div class="p-col-12"><p-floatlabel><p-inputnumber inputId="cantidad_entra" formControlName="cantidad_entra"
+                  suffix=" Unidades" styleClass="w-full"></p-inputnumber><label
+                  for="cantidad_entra">Entra</label></p-floatlabel></div>
+            <div class="p-col-12"><p-floatlabel><p-inputnumber inputId="cantidad_sale" formControlName="cantidad_sale"
+                  suffix=" Unidades" styleClass="w-full"></p-inputnumber><label
+                  for="cantidad_sale">Sale</label></p-floatlabel></div>
+            <div class="p-col-12"><p-floatlabel><p-inputnumber inputId="cantidad_saldo" formControlName="cantidad_saldo"
+                  suffix=" Unidades" styleClass="w-full"></p-inputnumber><label
+                  for="cantidad_saldo">Saldo</label></p-floatlabel></div>
           </div>
         </p-card>
       </div>
     </div>
     <p-card header="Observaciones" styleClass="card-section">
-      <p-floatlabel><textarea pInputTextarea id="observaciones" formControlName="observaciones" rows="4" class="w-full"></textarea><label for="observaciones">Observaciones</label></p-floatlabel>
+      <p-floatlabel><textarea pInputTextarea id="observaciones" formControlName="observaciones" rows="4"
+          class="w-full"></textarea><label for="observaciones">Observaciones</label></p-floatlabel>
     </p-card>
-    @if (successMessage) { <p-message severity="success" [text]="successMessage" styleClass="message-full"></p-message> }
+    @if (successMessage) { <p-message severity="success" [text]="successMessage" styleClass="message-full"></p-message>
+    }
     @if (errorMessage) { <p-message severity="error" [text]="errorMessage" styleClass="message-full"></p-message> }
     <div class="form-actions">
-      <p-button label="Cancelar" icon="pi pi-times" [outlined]="true" severity="secondary" (onClick)="goBack()"></p-button>
-      <p-button type="submit" [label]="loading ? 'Guardando...' : 'Guardar Registro'" icon="pi pi-save" [disabled]="form.invalid || loading" [loading]="loading"></p-button>
+      <p-button label="Cancelar" icon="pi pi-times" [outlined]="true" severity="secondary"
+        (onClick)="goBack()"></p-button>
+      <p-button type="submit" [label]="loading ? 'Guardando...' : 'Guardar Registro'" icon="pi pi-save"
+        [disabled]="form.invalid || loading" [loading]="loading"></p-button>
     </div>
   </form>
 </div>

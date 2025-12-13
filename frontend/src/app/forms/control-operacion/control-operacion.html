@@ -1,10 +1,6 @@
 <div class="form-container">
   <div class="header-section">
-    <p-button 
-      icon="pi pi-arrow-left" 
-      label="Volver" 
-      [text]="true"
-      (onClick)="goBack()">
+    <p-button icon="pi pi-arrow-left" label="Volver" [text]="true" (onClick)="goBack()">
     </p-button>
     <div class="title-section">
       <h1><i class="pi pi-cog"></i> Control de Operación</h1>
@@ -38,13 +34,15 @@
           <div class="p-grid">
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="turbedad_ac" formControlName="turbedad_ac" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" FTU" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="turbedad_ac" formControlName="turbedad_ac" [minFractionDigits]="2"
+                  [maxFractionDigits]="2" suffix=" FTU" styleClass="w-full"></p-inputnumber>
                 <label for="turbedad_ac">Agua Cruda</label>
               </p-floatlabel>
             </div>
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="turbedad_at" formControlName="turbedad_at" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" FTU" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="turbedad_at" formControlName="turbedad_at" [minFractionDigits]="2"
+                  [maxFractionDigits]="2" suffix=" FTU" styleClass="w-full"></p-inputnumber>
                 <label for="turbedad_at">Agua Tratada</label>
               </p-floatlabel>
             </div>
@@ -56,19 +54,22 @@
           <div class="p-grid">
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="ph_ac" formControlName="ph_ac" [minFractionDigits]="2" [maxFractionDigits]="2" [min]="0" [max]="14" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="ph_ac" formControlName="ph_ac" [minFractionDigits]="2" [maxFractionDigits]="2"
+                  [min]="0" [max]="14" styleClass="w-full"></p-inputnumber>
                 <label for="ph_ac">pH Agua Cruda</label>
               </p-floatlabel>
             </div>
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="ph_sulf" formControlName="ph_sulf" [minFractionDigits]="2" [maxFractionDigits]="2" [min]="0" [max]="14" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="ph_sulf" formControlName="ph_sulf" [minFractionDigits]="2"
+                  [maxFractionDigits]="2" [min]="0" [max]="14" styleClass="w-full"></p-inputnumber>
                 <label for="ph_sulf">pH con Sulfato</label>
               </p-floatlabel>
             </div>
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="ph_at" formControlName="ph_at" [minFractionDigits]="2" [maxFractionDigits]="2" [min]="0" [max]="14" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="ph_at" formControlName="ph_at" [minFractionDigits]="2" [maxFractionDigits]="2"
+                  [min]="0" [max]="14" styleClass="w-full"></p-inputnumber>
                 <label for="ph_at">pH Agua Tratada</label>
               </p-floatlabel>
             </div>
@@ -80,19 +81,22 @@
           <div class="p-grid">
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="presion_psi" formControlName="presion_psi" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" PSI" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="presion_psi" formControlName="presion_psi" [minFractionDigits]="2"
+                  [maxFractionDigits]="2" suffix=" PSI" styleClass="w-full"></p-inputnumber>
                 <label for="presion_psi">PSI</label>
               </p-floatlabel>
             </div>
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="presion_pre" formControlName="presion_pre" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" Kg/h" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="presion_pre" formControlName="presion_pre" [minFractionDigits]="2"
+                  [maxFractionDigits]="2" suffix=" Kg/h" styleClass="w-full"></p-inputnumber>
                 <label for="presion_pre">PRE</label>
               </p-floatlabel>
             </div>
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="presion_pos" formControlName="presion_pos" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" Kg/h" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="presion_pos" formControlName="presion_pos" [minFractionDigits]="2"
+                  [maxFractionDigits]="2" suffix=" Kg/h" styleClass="w-full"></p-inputnumber>
                 <label for="presion_pos">POS</label>
               </p-floatlabel>
             </div>
@@ -107,19 +111,22 @@
           <div class="p-grid">
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="dosis_sulfato" formControlName="dosis_sulfato" [minFractionDigits]="3" [maxFractionDigits]="3" suffix=" l/s" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="dosis_sulfato" formControlName="dosis_sulfato" [minFractionDigits]="3"
+                  [maxFractionDigits]="3" suffix=" l/s" styleClass="w-full"></p-inputnumber>
                 <label for="dosis_sulfato">Sulfato</label>
               </p-floatlabel>
             </div>
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="dosis_cal" formControlName="dosis_cal" [minFractionDigits]="3" [maxFractionDigits]="3" suffix=" l/s" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="dosis_cal" formControlName="dosis_cal" [minFractionDigits]="3"
+                  [maxFractionDigits]="3" suffix=" l/s" styleClass="w-full"></p-inputnumber>
                 <label for="dosis_cal">Cal</label>
               </p-floatlabel>
             </div>
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="dosis_floergel" formControlName="dosis_floergel" [minFractionDigits]="3" [maxFractionDigits]="3" suffix=" l/s" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="dosis_floergel" formControlName="dosis_floergel" [minFractionDigits]="3"
+                  [maxFractionDigits]="3" suffix=" l/s" styleClass="w-full"></p-inputnumber>
                 <label for="dosis_floergel">Floergel</label>
               </p-floatlabel>
             </div>
@@ -135,15 +142,40 @@
                 <label for="color">Color</label>
               </p-floatlabel>
             </div>
+            <!-- Clarificación -->
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="ff" formControlName="ff" [minFractionDigits]="2" [maxFractionDigits]="2" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="clarificacion_is" formControlName="clarificacion_is" [minFractionDigits]="2"
+                  [maxFractionDigits]="2" suffix=" K/Cm³" styleClass="w-full"></p-inputnumber>
+                <label for="clarificacion_is">Clarificación IS</label>
+              </p-floatlabel>
+            </div>
+            <div class="p-col-12">
+              <p-floatlabel>
+                <p-inputnumber inputId="clarificacion_cs" formControlName="clarificacion_cs" [minFractionDigits]="2"
+                  [maxFractionDigits]="2" suffix=" K/Cm³" styleClass="w-full"></p-inputnumber>
+                <label for="clarificacion_cs">Clarificación CS</label>
+              </p-floatlabel>
+            </div>
+            <div class="p-col-12">
+              <p-floatlabel>
+                <p-inputnumber inputId="clarificacion_fs" formControlName="clarificacion_fs" [minFractionDigits]="2"
+                  [maxFractionDigits]="2" suffix=" K/Cm³" styleClass="w-full"></p-inputnumber>
+                <label for="clarificacion_fs">Clarificación FS</label>
+              </p-floatlabel>
+            </div>
+
+            <div class="p-col-12">
+              <p-floatlabel>
+                <p-inputnumber inputId="ff" formControlName="ff" [minFractionDigits]="2" [maxFractionDigits]="2"
+                  styleClass="w-full"></p-inputnumber>
                 <label for="ff">Factor de Forma</label>
               </p-floatlabel>
             </div>
             <div class="p-col-12">
               <p-floatlabel>
-                <p-inputnumber inputId="cloro_residual" formControlName="cloro_residual" [minFractionDigits]="2" [maxFractionDigits]="2" suffix=" mg/l" styleClass="w-full"></p-inputnumber>
+                <p-inputnumber inputId="cloro_residual" formControlName="cloro_residual" [minFractionDigits]="2"
+                  [maxFractionDigits]="2" suffix=" mg/l" styleClass="w-full"></p-inputnumber>
                 <label for="cloro_residual">Cloro Residual</label>
               </p-floatlabel>
             </div>
@@ -162,27 +194,18 @@
 
     <!-- Mensajes -->
     @if (successMessage) {
-      <p-message severity="success" [text]="successMessage" styleClass="message-full"></p-message>
+    <p-message severity="success" [text]="successMessage" styleClass="message-full"></p-message>
     }
     @if (errorMessage) {
-      <p-message severity="error" [text]="errorMessage" styleClass="message-full"></p-message>
+    <p-message severity="error" [text]="errorMessage" styleClass="message-full"></p-message>
     }
 
     <!-- Acciones -->
     <div class="form-actions">
-      <p-button 
-        label="Cancelar" 
-        icon="pi pi-times" 
-        [outlined]="true"
-        severity="secondary"
-        (onClick)="goBack()">
+      <p-button label="Cancelar" icon="pi pi-times" [outlined]="true" severity="secondary" (onClick)="goBack()">
       </p-button>
-      <p-button 
-        type="submit"
-        [label]="loading ? 'Guardando...' : 'Guardar Registro'" 
-        icon="pi pi-save" 
-        [disabled]="form.invalid || loading"
-        [loading]="loading">
+      <p-button type="submit" [label]="loading ? 'Guardando...' : 'Guardar Registro'" icon="pi pi-save"
+        [disabled]="form.invalid || loading" [loading]="loading">
       </p-button>
     </div>
   </form>

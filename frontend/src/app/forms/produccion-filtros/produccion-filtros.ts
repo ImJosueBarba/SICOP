@@ -30,19 +30,19 @@ export class ProduccionFiltros implements OnInit {
   private http = inject(HttpClient);
   private router = inject(Router);
   private location = inject(Location);
-  
+
   form!: FormGroup;
   loading = false;
   successMessage = '';
   errorMessage = '';
-  
+
   private apiUrl = 'http://localhost:8000/api/produccion-filtros';
 
   ngOnInit() {
     const now = new Date();
     const fecha = now.toISOString().split('T')[0];
     const hora = now.toTimeString().split(' ')[0].substring(0, 5);
-    
+
     this.form = this.fb.group({
       fecha: [fecha, Validators.required],
       hora: [hora, Validators.required],
@@ -58,6 +58,7 @@ export class ProduccionFiltros implements OnInit {
       filtro5_q: [null],
       filtro6_h: [null],
       filtro6_q: [null],
+      observaciones: [''],
       operador_id: [1]
     });
   }
@@ -67,7 +68,7 @@ export class ProduccionFiltros implements OnInit {
       this.loading = true;
       this.successMessage = '';
       this.errorMessage = '';
-      
+
       this.http.post(this.apiUrl, this.form.value).subscribe({
         next: (response) => {
           this.successMessage = 'Registro guardado exitosamente';

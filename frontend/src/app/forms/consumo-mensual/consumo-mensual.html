@@ -1,0 +1,213 @@
+<div class="form-container">
+    <p-card header="Matriz 1: Consumo de Químicos en Planta (Mensual)" subheader="Registro mensual de consumo de químicos">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            
+            <!-- Datos Generales -->
+            <p-panel header="Datos Generales" [toggleable]="true">
+                <div class="grid-form">
+                    <div class="field">
+                        <p-floatLabel>
+                            <input pInputText id="fecha" type="date" formControlName="fecha" class="w-full" />
+                            <label for="fecha">Fecha de Registro</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-select [options]="meses" formControlName="mes" optionLabel="label" optionValue="value" placeholder="Seleccione Mes" class="w-full"></p-select>
+                            <label for="mes">Mes</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="anio" formControlName="anio" [useGrouping]="false" class="w-full"></p-inputNumber>
+                            <label for="anio">Año</label>
+                        </p-floatLabel>
+                    </div>
+                </div>
+            </p-panel>
+
+            <p-divider></p-divider>
+
+            <!-- Sulfato de Aluminio -->
+            <p-panel header="Sulfato de Aluminio (KG)" [toggleable]="true">
+                <div class="grid-form">
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="sulfato_con" formControlName="sulfato_con" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="sulfato_con">Consumo (KG)</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="sulfato_ing" formControlName="sulfato_ing" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="sulfato_ing">Ingreso (KG)</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <input pInputText id="sulfato_guia" formControlName="sulfato_guia" class="w-full" />
+                            <label for="sulfato_guia">Guía #</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="sulfato_re" formControlName="sulfato_re" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="sulfato_re">Remanente (KG)</label>
+                        </p-floatLabel>
+                    </div>
+                </div>
+            </p-panel>
+
+            <p-divider></p-divider>
+
+            <!-- Cal -->
+            <p-panel header="Cal (Sacos de Calcio)" [toggleable]="true">
+                <div class="grid-form">
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="cal_con" formControlName="cal_con" class="w-full"></p-inputNumber>
+                            <label for="cal_con">Consumo (Sacos)</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="cal_ing" formControlName="cal_ing" class="w-full"></p-inputNumber>
+                            <label for="cal_ing">Ingreso (Sacos)</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <input pInputText id="cal_guia" formControlName="cal_guia" class="w-full" />
+                            <label for="cal_guia">Guía #</label>
+                        </p-floatLabel>
+                    </div>
+                </div>
+            </p-panel>
+
+            <p-divider></p-divider>
+
+            <!-- Hipoclorito de Calcio -->
+            <p-panel header="Hipoclorito de Calcio" [toggleable]="true">
+                <div class="grid-form">
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="hipoclorito_con" formControlName="hipoclorito_con" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="hipoclorito_con">Consumo</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="hipoclorito_ing" formControlName="hipoclorito_ing" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="hipoclorito_ing">Ingreso</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <input pInputText id="hipoclorito_guia" formControlName="hipoclorito_guia" class="w-full" />
+                            <label for="hipoclorito_guia">Guía #</label>
+                        </p-floatLabel>
+                    </div>
+                </div>
+            </p-panel>
+
+            <p-divider></p-divider>
+
+            <!-- Gas Licuado de Cloro -->
+            <p-panel header="Gas Licuado de Cloro" [toggleable]="true">
+                <div class="grid-form">
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="cloro_gas_con" formControlName="cloro_gas_con" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="cloro_gas_con">Consumo</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="cloro_gas_ing_bal" formControlName="cloro_gas_ing_bal" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="cloro_gas_ing_bal">Ingreso Balón</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="cloro_gas_ing_bdg" formControlName="cloro_gas_ing_bdg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="cloro_gas_ing_bdg">Ingreso Bodega</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <input pInputText id="cloro_gas_guia" formControlName="cloro_gas_guia" class="w-full" />
+                            <label for="cloro_gas_guia">Guía #</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="cloro_gas_egre" formControlName="cloro_gas_egre" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="cloro_gas_egre">Egreso</label>
+                        </p-floatLabel>
+                    </div>
+                </div>
+            </p-panel>
+
+            <p-divider></p-divider>
+
+            <!-- Producción y Resumen -->
+            <p-panel header="Producción y Resumen Mensual" [toggleable]="true">
+                <div class="grid-form">
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="produccion_m3_dia" formControlName="produccion_m3_dia" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="produccion_m3_dia">Producción (m³/día)</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="inicio_mes_kg" formControlName="inicio_mes_kg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="inicio_mes_kg">Inicio Mes (KG)</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="ingreso_mes_kg" formControlName="ingreso_mes_kg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="ingreso_mes_kg">Ingreso Mes (KG)</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="consumo_mes_kg" formControlName="consumo_mes_kg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="consumo_mes_kg">Consumo Mes (KG)</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="egreso_mes_kg" formControlName="egreso_mes_kg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="egreso_mes_kg">Egreso Mes (KG)</label>
+                        </p-floatLabel>
+                    </div>
+                    <div class="field">
+                        <p-floatLabel>
+                            <p-inputNumber id="fin_mes_kg" formControlName="fin_mes_kg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
+                            <label for="fin_mes_kg">Fin de Mes (KG)</label>
+                        </p-floatLabel>
+                    </div>
+                </div>
+            </p-panel>
+
+            <div class="field mt-4">
+                <p-floatLabel>
+                    <textarea pTextarea id="observaciones" formControlName="observaciones" rows="3" class="w-full"></textarea>
+                    <label for="observaciones">Observaciones</label>
+                </p-floatLabel>
+            </div>
+
+            <div class="form-actions mt-4 flex justify-content-end gap-2">
+                <p-button label="Cancelar" icon="pi pi-times" severity="secondary" (onClick)="goBack()"></p-button>
+                <p-button label="Guardar" icon="pi pi-check" type="submit" [loading]="loading"></p-button>
+            </div>
+
+            <div class="mt-3">
+                <p-message *ngIf="successMessage" severity="success" [text]="successMessage"></p-message>
+                <p-message *ngIf="errorMessage" severity="error" [text]="errorMessage"></p-message>
+            </div>
+        </form>
+    </p-card>
+</div>

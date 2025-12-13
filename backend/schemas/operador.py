@@ -5,6 +5,7 @@ Schemas Pydantic para el modelo Operador
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from typing import Optional
 from datetime import date, datetime
+from models.operador import UserRole
 
 
 # Schema base
@@ -16,12 +17,16 @@ class OperadorBase(BaseModel):
     telefono: Optional[str] = Field(None, max_length=20)
     activo: bool = True
     fecha_contratacion: Optional[date] = None
+    
+    # Auth fields
+    username: str = Field(..., min_length=3, max_length=50)
+    rol: UserRole = UserRole.OPERADOR
 
 
 # Schema para crear un operador
 class OperadorCreate(OperadorBase):
     """Schema para crear un nuevo operador"""
-    pass
+    password: str = Field(..., min_length=6)
 
 
 # Schema para actualizar un operador
