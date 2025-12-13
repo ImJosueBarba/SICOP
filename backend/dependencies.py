@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from core.config import settings
-from models.operador import Operador
+from models.usuario import Usuario
 from schemas.auth import TokenData
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/token")
@@ -27,12 +27,12 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db: Se
     except JWTError:
         raise credentials_exception
     
-    user = db.query(Operador).filter(Operador.username == token_data.username).first()
+    user = db.query(Usuario).filter(Usuario.username == token_data.username).first()
     if user is None:
         raise credentials_exception
     return user
 
-async def get_current_active_user(current_user: Annotated[Operador, Depends(get_current_user)]):
+async def get_current_active_user(current_user: Annotated[Usuario, Depends(get_current_user)]):
     if not current_user.activo:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user

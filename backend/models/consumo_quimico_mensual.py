@@ -51,12 +51,12 @@ class ConsumoQuimicoMensual(Base):
     fin_mes_kg = Column(Numeric(10, 2))
     
     observaciones = Column(Text)
-    operador_id = Column(Integer, ForeignKey("operadores.id"))
+    usuario_id = Column(Integer, ForeignKey("usuarios.id"))
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relaciones
-    operador = relationship("Operador", back_populates="consumos_mensuales")
+    usuario = relationship("Usuario", back_populates="consumos_mensuales")
     
     __table_args__ = (
         UniqueConstraint('mes', 'anio', name='uq_mes_anio'),

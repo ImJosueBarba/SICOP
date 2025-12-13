@@ -9,7 +9,7 @@ from sqlalchemy.orm import declarative_base
 Base = declarative_base()
 
 # Importar todos los modelos
-from .operador import Operador
+from .usuario import Usuario, UserRole
 from .quimico import Quimico
 from .filtro import Filtro
 from .consumo_quimico_mensual import ConsumoQuimicoMensual

@@ -10,7 +10,7 @@ from models import Base
 
 # Importar routers
 from routers import (
-    operadores,
+    usuarios,
     quimicos,
     filtros,
     consumo_mensual,
@@ -43,7 +43,7 @@ app.add_middleware(
 )
 
 # Incluir routers
-app.include_router(operadores.router, prefix="/api/operadores", tags=["Operadores"])
+app.include_router(usuarios.router, prefix="/api/usuarios", tags=["Usuarios"])
 app.include_router(quimicos.router, prefix="/api/quimicos", tags=["Químicos"])
 app.include_router(filtros.router, prefix="/api/filtros", tags=["Filtros"])
 app.include_router(consumo_mensual.router, prefix="/api/consumo-mensual", tags=["Consumo Mensual"])

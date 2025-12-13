@@ -37,13 +37,13 @@ class ControlConsumoDiario(Base):
     total_consumo = Column(Numeric(10, 2))
     
     observaciones = Column(Text)
-    operador_id = Column(Integer, ForeignKey("operadores.id"))
+    usuario_id = Column(Integer, ForeignKey("usuarios.id"))
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relaciones
     quimico = relationship("Quimico", back_populates="consumos_diarios")
-    operador = relationship("Operador", back_populates="consumos_diarios")
+    usuario = relationship("Usuario", back_populates="consumos_diarios")
     
     def __repr__(self):
         return f"<ControlConsumoDiario(id={self.id}, fecha={self.fecha}, quimico_id={self.quimico_id})>"

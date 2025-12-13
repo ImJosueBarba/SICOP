@@ -44,12 +44,12 @@ class ProduccionFiltro(Base):
     caudal_total = Column(Numeric(10, 2))
     
     observaciones = Column(Text)
-    operador_id = Column(Integer, ForeignKey("operadores.id"))
+    usuario_id = Column(Integer, ForeignKey("usuarios.id"))
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relaciones
-    operador = relationship("Operador", back_populates="producciones_filtros")
+    usuario = relationship("Usuario", back_populates="producciones_filtros")
     
     __table_args__ = (
         UniqueConstraint('fecha', 'hora', name='uq_fecha_hora_produccion'),

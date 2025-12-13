@@ -6,8 +6,15 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
 export interface User {
+    id?: number;
     username: string;
-    rol: 'ADMIN' | 'VISUALIZADOR' | 'OPERADOR';
+    nombre: string;
+    apellido: string;
+    email?: string;
+    telefono?: string;
+    rol: 'ADMINISTRADOR' | 'OPERADOR' | 'ADMIN';
+    activo: boolean;
+    fecha_contratacion?: string;
     sub: string; // username in sub
 }
 
@@ -63,6 +70,10 @@ export class AuthService {
     hasRole(allowedRoles: string[]): boolean {
         const user = this.currentUserSubject.value;
         if (!user) return false;
+        // Allow ADMIN as alias for ADMINISTRADOR for backward compatibility
+        if (user.rol === 'ADMINISTRADOR' && allowedRoles.includes('ADMIN')) {
+            return true;
+        }
         return allowedRoles.includes(user.rol);
     }
 
@@ -85,8 +96,15 @@ export class AuthService {
                 }).subscribe({
                     next: (user) => {
                         this.currentUserSubject.next({
+                            id: user.id,
                             username: user.username,
+                            nombre: user.nombre,
+                            apellido: user.apellido,
+                            email: user.email,
+                            telefono: user.telefono,
                             rol: user.rol,
+                            activo: user.activo,
+                            fecha_contratacion: user.fecha_contratacion,
                             sub: user.username
                         });
                     },

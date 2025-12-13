@@ -25,12 +25,12 @@ class ControlCloroLibre(Base):
     cantidad_saldo = Column(Integer)
     
     observaciones = Column(Text)
-    operador_id = Column(Integer, ForeignKey("operadores.id"))
+    usuario_id = Column(Integer, ForeignKey("usuarios.id"))
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relaciones
-    operador = relationship("Operador", back_populates="controles_cloro")
+    usuario = relationship("Usuario", back_populates="controles_cloro")
     
     def __repr__(self):
         return f"<ControlCloroLibre(id={self.id}, fecha={self.fecha_mes}, codigo='{self.codigo}', saldo={self.cantidad_saldo})>"

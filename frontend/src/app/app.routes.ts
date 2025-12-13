@@ -49,9 +49,56 @@ export const routes: Routes = [
     data: { roles: ['OPERADOR', 'ADMIN'] }
   },
   {
+    path: 'admin',
+    loadComponent: () => import('./pages/admin/user-management/user-management').then(m => m.UserManagement),
+    canActivate: [authGuard],
+    data: { roles: ['ADMINISTRADOR'] }
+  },
+  {
     path: 'usuarios',
     loadComponent: () => import('./pages/admin/user-management/user-management').then(m => m.UserManagement),
     canActivate: [authGuard],
-    data: { roles: ['ADMIN'] }
+    data: { roles: ['ADMINISTRADOR'] }
+  },
+  {
+    path: 'home',
+    component: Home,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'forms/control-operacion',
+    component: ControlOperacion,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  {
+    path: 'forms/produccion-filtros',
+    component: ProduccionFiltros,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  {
+    path: 'forms/consumo-quimicos',
+    component: ConsumoQuimicos,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  {
+    path: 'forms/consumo-mensual',
+    loadComponent: () => import('./forms/consumo-mensual/consumo-mensual').then(m => m.ConsumoMensual),
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  {
+    path: 'forms/control-cloro',
+    component: ControlCloro,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  {
+    path: 'forms/monitoreo-fisicoquimico',
+    component: MonitoreoFisicoquimico,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
   },
 ];

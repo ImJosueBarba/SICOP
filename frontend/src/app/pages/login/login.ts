@@ -1,19 +1,15 @@
 
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { InputText } from 'primeng/inputtext';
-import { Button } from 'primeng/button';
-import { FloatLabel } from 'primeng/floatlabel';
-import { Password } from 'primeng/password';
-import { Message } from 'primeng/message';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, InputText, Button, FloatLabel, Password, Message],
+    imports: [CommonModule, ReactiveFormsModule, FormsModule, InputText],
     templateUrl: './login.html',
     styleUrl: './login.css'
 })
@@ -29,6 +25,7 @@ export class Login {
 
     loading = false;
     errorMessage = '';
+    rememberMe = false;
 
     onSubmit() {
         if (this.form.valid) {

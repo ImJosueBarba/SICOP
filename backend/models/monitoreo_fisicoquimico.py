@@ -14,7 +14,7 @@ class MonitoreoFisicoquimico(Base):
     
     id = Column(Integer, primary_key=True, index=True)
     fecha = Column(Date, nullable=False, index=True)
-    operador_id = Column(Integer, ForeignKey("operadores.id"), index=True)
+    usuario_id = Column(Integer, ForeignKey("usuarios.id"), index=True)
     lugar_agua_cruda = Column(String(200))
     lugar_agua_tratada = Column(String(200))
     
@@ -40,7 +40,7 @@ class MonitoreoFisicoquimico(Base):
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relaciones
-    operador = relationship("Operador", back_populates="monitoreos")
+    usuario = relationship("Usuario", back_populates="monitoreos")
     
     __table_args__ = (
         UniqueConstraint('fecha', 'muestra_numero', name='uq_fecha_muestra'),

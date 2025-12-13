@@ -7,9 +7,10 @@ import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
+  standalone: true,
   imports: [CommonModule, RouterModule, MenubarModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
+  styleUrl: './navbar.css'
 })
 export class Navbar implements OnInit {
   private authService = inject(AuthService);
@@ -33,49 +34,63 @@ export class Navbar implements OnInit {
       {
         label: 'Inicio',
         icon: 'pi pi-home',
-        routerLink: '/'
+        routerLink: ['/home']
       }
     ];
 
-    if (user.rol === 'ADMIN') {
+    // Menú de Administración solo para ADMINISTRADOR
+    if (user.rol === 'ADMINISTRADOR' || user.rol === 'ADMIN') {
       this.items.push({
-        label: 'Usuarios',
+        label: 'Gestión de Usuarios',
         icon: 'pi pi-users',
-        routerLink: '/usuarios'
+        routerLink: ['/admin']
       });
     }
 
-    if (user.rol === 'OPERADOR' || user.rol === 'ADMIN') {
+    // Menú de Matrices de Control solo para OPERADOR
+    if (user.rol === 'OPERADOR') {
       this.items.push(
         {
-          label: 'Control de Operación',
-          icon: 'pi pi-cog',
-          routerLink: '/control-operacion'
+          label: 'Matrices',
+          icon: 'pi pi-table',
+          items: [
+            {
+              label: 'Control de Operación',
+              icon: 'pi pi-cog',
+              routerLink: ['/forms/control-operacion']
+            },
+            {
+              label: 'Control de Cloro Libre',
+              icon: 'pi pi-circle',
+              routerLink: ['/forms/control-cloro']
+            },
+            {
+              label: 'Monitoreo Fisicoquímico',
+              icon: 'pi pi-chart-bar',
+              routerLink: ['/forms/monitoreo-fisicoquimico']
+            }
+          ]
         },
         {
-          label: 'Producción de Filtros',
-          icon: 'pi pi-filter',
-          routerLink: '/produccion-filtros'
-        },
-        {
-          label: 'Consumo de Químicos',
-          icon: 'pi pi-shopping-cart',
-          routerLink: '/consumo-quimicos'
-        },
-        {
-          label: 'Consumo Mensual',
-          icon: 'pi pi-calendar',
-          routerLink: '/consumo-mensual'
-        },
-        {
-          label: 'Control de Cloro',
-          icon: 'pi pi-box',
-          routerLink: '/control-cloro'
-        },
-        {
-          label: 'Monitoreo Fisicoquímico',
-          icon: 'pi pi-chart-bar',
-          routerLink: '/monitoreo-fisicoquimico'
+          label: 'Producción',
+          icon: 'pi pi-chart-line',
+          items: [
+            {
+              label: 'Producción de Filtros',
+              icon: 'pi pi-filter',
+              routerLink: ['/forms/produccion-filtros']
+            },
+            {
+              label: 'Consumo Diario',
+              icon: 'pi pi-shopping-cart',
+              routerLink: ['/forms/consumo-quimicos']
+            },
+            {
+              label: 'Consumo Mensual',
+              icon: 'pi pi-calendar',
+              routerLink: ['/forms/consumo-mensual']
+            }
+          ]
         }
       );
     }
@@ -88,3 +103,4 @@ export class Navbar implements OnInit {
     });
   }
 }
+

@@ -1,26 +1,298 @@
-:host ::ng-deep .p-dialog .p-button {
-    min-width: 6rem;
+.user-management-container {
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
 }
 
-.status-active {
-    color: #22c55e;
+.header-section {
+    margin-bottom: 2rem;
+    text-align: center;
+    color: white;
+}
+
+.page-title {
+    font-size: 2.5rem;
     font-weight: 700;
-}
-
-.status-inactive {
-    color: #ef4444;
-    font-weight: 700;
-}
-
-.field {
-    margin-bottom: 1rem;
-}
-
-.formgrid.grid {
+    margin: 0 0 0.5rem 0;
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
 }
 
-.formgrid .col {
-    flex: 1;
+.page-title i {
+    font-size: 2.5rem;
+}
+
+.page-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    margin: 0;
+}
+
+::ng-deep {
+    .p-card {
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .p-toolbar {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        padding: 1.25rem;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .p-toolbar .p-button-success {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .p-toolbar .p-button-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(17, 153, 142, 0.4);
+    }
+
+    .search-input {
+        border-radius: 50px;
+        padding: 0.75rem 1.5rem;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.95);
+        width: 300px;
+        transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+        border-color: #38ef7d;
+        box-shadow: 0 0 0 0.2rem rgba(56, 239, 125, 0.25);
+        width: 350px;
+    }
+
+    .p-datatable {
+        .p-datatable-header {
+            background: #f8f9fa;
+            border: none;
+            padding: 1rem;
+        }
+
+        .p-datatable-thead > tr > th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            padding: 1rem;
+            border: none;
+        }
+
+        .p-datatable-tbody > tr {
+            transition: all 0.2s ease;
+        }
+
+        .p-datatable-tbody > tr:hover {
+            background: rgba(102, 126, 234, 0.05);
+            transform: scale(1.01);
+        }
+
+        .p-datatable-tbody > tr > td {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+    }
+
+    .p-paginator {
+        background: #f8f9fa;
+        border: none;
+        padding: 1rem;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .p-tag {
+        padding: 0.4rem 0.8rem;
+        font-weight: 600;
+        border-radius: 20px;
+    }
+
+    .p-dialog {
+        .p-dialog-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .p-dialog-content {
+            padding: 2rem;
+        }
+
+        .p-dialog-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #e9ecef;
+        }
+    }
+}
+
+.username-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 20px;
+    font-weight: 500;
+    color: #667eea;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 3rem !important;
+    color: #6c757d;
+    font-size: 1.1rem;
+}
+
+.empty-message i {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+/* Formulario */
+.form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-field.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-field label {
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.95rem;
+}
+
+.form-field label.required::after {
+    content: ' *';
+    color: #e74c3c;
+}
+
+.form-field input,
+.form-field .p-inputtext {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field .p-inputtext:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.form-field input.ng-invalid.ng-touched,
+.form-field .p-inputtext.ng-invalid.ng-touched {
+    border-color: #e74c3c;
+}
+
+.form-field small.p-error {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+::ng-deep {
+    .p-button-success {
+        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .p-button-success:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(17, 153, 142, 0.4);
+    }
+
+    .p-button-text {
+        color: #667eea;
+        font-weight: 600;
+    }
+
+    .p-button-text:hover {
+        background: rgba(102, 126, 234, 0.1);
+    }
+
+    .p-toast {
+        z-index: 9999;
+    }
+
+    .p-toast-message {
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .p-confirm-dialog {
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .p-confirm-dialog .p-dialog-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .user-management-container {
+        padding: 1rem;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    ::ng-deep {
+        .search-input {
+            width: 100%;
+        }
+
+        .search-input:focus {
+            width: 100%;
+        }
+
+        .p-dialog {
+            width: 95% !important;
+        }
+    }
 }

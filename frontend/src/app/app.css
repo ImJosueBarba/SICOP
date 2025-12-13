@@ -1,3 +1,10 @@
 .main-content {
-  min-height: calc(100vh - 60px);
+  min-height: 100vh;
+  background: #f5f6fa;
+}
+
+/* Cuando hay navbar, agregar padding top */
+app-navbar + .main-content {
+  padding-top: 70px;
+  min-height: calc(100vh - 70px);
 }

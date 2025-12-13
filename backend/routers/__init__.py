@@ -3,7 +3,7 @@ Módulo de routers para la API
 """
 
 from . import (
-    operadores,
+    usuarios,
     quimicos,
     filtros,
     consumo_mensual,
@@ -15,7 +15,7 @@ from . import (
 )
 
 __all__ = [
-    "operadores",
+    "usuarios",
     "quimicos",
     "filtros",
     "consumo_mensual",

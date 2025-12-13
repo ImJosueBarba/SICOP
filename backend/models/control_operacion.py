@@ -51,12 +51,12 @@ class ControlOperacion(Base):
     cloro_residual = Column(Numeric(10, 2))  # mg/l
     
     observaciones = Column(Text)
-    operador_id = Column(Integer, ForeignKey("operadores.id"))
+    usuario_id = Column(Integer, ForeignKey("usuarios.id"))
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relaciones
-    operador = relationship("Operador", back_populates="controles_operacion")
+    usuario = relationship("Usuario", back_populates="controles_operacion")
     
     __table_args__ = (
         UniqueConstraint('fecha', 'hora', name='uq_fecha_hora_operacion'),
