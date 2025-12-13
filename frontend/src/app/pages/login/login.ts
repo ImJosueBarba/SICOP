@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { InputText } from 'primeng/inputtext';
 import { Button } from 'primeng/button';
-import { Card } from 'primeng/card';
+import { FloatLabel } from 'primeng/floatlabel';
 import { Password } from 'primeng/password';
 import { Message } from 'primeng/message';
 import { AuthService } from '../../auth/auth.service';
@@ -13,7 +13,7 @@ import { AuthService } from '../../auth/auth.service';
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, InputText, Button, Card, Password, Message],
+    imports: [CommonModule, ReactiveFormsModule, InputText, Button, FloatLabel, Password, Message],
     templateUrl: './login.html',
     styleUrl: './login.css'
 })

@@ -1,22 +1,36 @@
 <div class="login-container">
-    <p-card header="Bienvenido a SICOP" subheader="Sistema de Control de Planta La Esperanza"
-        [style]="{ width: '400px' }">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column gap-3">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="logo-section">
+                <i class="pi pi-shield" style="font-size: 4rem;"></i>
+            </div>
+            <h1>SICOP</h1>
+            <p class="subtitle">Sistema de Control de Planta</p>
+            <p class="company">La Esperanza</p>
+        </div>
 
-            <div class="flex flex-column gap-2">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+            <p-floatlabel>
+                <input pInputText id="username" formControlName="username" class="w-full" />
                 <label for="username">Usuario</label>
-                <input pInputText id="username" formControlName="username" />
-            </div>
+            </p-floatlabel>
 
-            <div class="flex flex-column gap-2">
-                <label for="password">Contraseña</label>
+            <p-floatlabel>
                 <p-password id="password" formControlName="password" [feedback]="false" [toggleMask]="true"
-                    styleClass="w-full"></p-password>
-            </div>
+                    styleClass="w-full" inputStyleClass="w-full"></p-password>
+                <label for="password">Contraseña</label>
+            </p-floatlabel>
 
-            <p-message *ngIf="errorMessage" severity="error" [text]="errorMessage"></p-message>
+            @if (errorMessage) {
+                <p-message severity="error" [text]="errorMessage" styleClass="w-full"></p-message>
+            }
 
-            <p-button label="Iniciar Sesión" type="submit" [loading]="loading" [disabled]="form.invalid"></p-button>
+            <p-button label="Iniciar Sesión" icon="pi pi-sign-in" type="submit" [loading]="loading" 
+                [disabled]="form.invalid" styleClass="w-full" size="large"></p-button>
         </form>
-    </p-card>
+
+        <div class="login-footer">
+            <p><i class="pi pi-lock"></i> Acceso seguro al sistema</p>
+        </div>
+    </div>
 </div>

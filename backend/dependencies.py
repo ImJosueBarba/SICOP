@@ -7,7 +7,6 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from core.config import settings
-from core.security import ALGORITHM
 from models.operador import Operador
 from schemas.auth import TokenData
 
