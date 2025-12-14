@@ -1,4 +1,4 @@
-<app-navbar *ngIf="shouldShowNavbar()"></app-navbar>
-<div class="main-content">
-  <router-outlet></router-outlet>
-</div>
+<app-main-layout *ngIf="shouldShowLayout()">
+</app-main-layout>
+
+<router-outlet *ngIf="!shouldShowLayout()"></router-outlet>

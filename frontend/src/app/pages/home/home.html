@@ -1,26 +1,114 @@
-<div class="container">
-  <div class="hero">
-    <h1>Bienvenido al Sistema de Control y Operación</h1>
-    <p>Planta de Tratamiento de Agua Potable "La Esperanza"</p>
+<div class="dashboard-container">
+  <!-- Welcome Section -->
+  <div class="welcome-section">
+    <div class="welcome-content">
+      <div class="welcome-text">
+        <h1>¡Bienvenido, {{ currentUser?.nombre || 'Usuario' }}!</h1>
+        <p class="welcome-subtitle">{{ currentTime }}</p>
+      </div>
+      <div class="welcome-icon">
+        <i class="pi pi-sun"></i>
+      </div>
+    </div>
   </div>
 
-  <div class="info-cards">
-    <div class="info-card">
-      <i class="pi pi-file-edit" style="font-size: 3rem; color: #1976d2;"></i>
-      <h3>Registro de Datos</h3>
-      <p>Utiliza el menú superior "Formularios" para acceder a los diferentes módulos de ingreso de datos.</p>
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card stat-blue">
+      <div class="stat-icon">
+        <i class="pi pi-droplet"></i>
+      </div>
+      <div class="stat-content">
+        <p class="stat-label">Calidad del Agua</p>
+        <h3 class="stat-value">Óptima</h3>
+      </div>
     </div>
 
-    <div class="info-card">
-      <i class="pi pi-clock" style="font-size: 3rem; color: #2e7d32;"></i>
-      <h3>Control en Tiempo Real</h3>
-      <p>Registra parámetros operacionales cada hora para mantener el control de calidad del agua.</p>
+    <div class="stat-card stat-green">
+      <div class="stat-icon">
+        <i class="pi pi-check-circle"></i>
+      </div>
+      <div class="stat-content">
+        <p class="stat-label">Sistema</p>
+        <h3 class="stat-value">Operativo</h3>
+      </div>
     </div>
 
+    <div class="stat-card stat-purple">
+      <div class="stat-icon">
+        <i class="pi pi-chart-line"></i>
+      </div>
+      <div class="stat-content">
+        <p class="stat-label">Producción</p>
+        <h3 class="stat-value">Normal</h3>
+      </div>
+    </div>
+
+    <div class="stat-card stat-orange">
+      <div class="stat-icon">
+        <i class="pi pi-clock"></i>
+      </div>
+      <div class="stat-content">
+        <p class="stat-label">Último Control</p>
+        <h3 class="stat-value">Hoy</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="section-header">
+    <h2>Acciones Rápidas</h2>
+    <p>Accede directamente a los módulos del sistema</p>
+  </div>
+
+  <div class="actions-grid">
+    @for (action of getVisibleActions(); track action.route) {
+      <a [routerLink]="action.route" class="action-card" [attr.data-color]="action.color">
+        <div class="action-icon">
+          <i class="pi {{ action.icon }}"></i>
+        </div>
+        <div class="action-content">
+          <h3>{{ action.title }}</h3>
+          <p>{{ action.description }}</p>
+        </div>
+        <div class="action-arrow">
+          <i class="pi pi-arrow-right"></i>
+        </div>
+      </a>
+    }
+  </div>
+
+  <!-- Info Section -->
+  <div class="info-section">
     <div class="info-card">
-      <i class="pi pi-chart-line" style="font-size: 3rem; color: #f57c00;"></i>
-      <h3>Monitoreo Continuo</h3>
-      <p>Todos los datos se guardan automáticamente para análisis y reportes posteriores.</p>
+      <div class="info-header">
+        <i class="pi pi-info-circle"></i>
+        <h3>Planta de Tratamiento "La Esperanza"</h3>
+      </div>
+      <div class="info-content">
+        <p>
+          Sistema de gestión integral para el control y monitoreo de la calidad del agua potable.
+          Registre todos los parámetros operacionales y mantenga un control preciso de los procesos.
+        </p>
+        <div class="info-features">
+          <div class="feature">
+            <i class="pi pi-check"></i>
+            <span>Registro en tiempo real</span>
+          </div>
+          <div class="feature">
+            <i class="pi pi-check"></i>
+            <span>Reportes automáticos</span>
+          </div>
+          <div class="feature">
+            <i class="pi pi-check"></i>
+            <span>Trazabilidad completa</span>
+          </div>
+          <div class="feature">
+            <i class="pi pi-check"></i>
+            <span>Control de calidad</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

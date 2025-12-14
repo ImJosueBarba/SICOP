@@ -15,6 +15,7 @@ export interface User {
     rol: 'ADMINISTRADOR' | 'OPERADOR' | 'ADMIN';
     activo: boolean;
     fecha_contratacion?: string;
+    foto_perfil?: string;
     sub: string; // username in sub
 }
 
@@ -81,7 +82,7 @@ export class AuthService {
         return this.currentUserSubject.value;
     }
 
-    private loadUserFromToken() {
+    loadUserFromToken() {
         const token = this.getToken();
         if (token) {
             try {
@@ -105,6 +106,7 @@ export class AuthService {
                             rol: user.rol,
                             activo: user.activo,
                             fecha_contratacion: user.fecha_contratacion,
+                            foto_perfil: user.foto_perfil,
                             sub: user.username
                         });
                     },
@@ -116,6 +118,18 @@ export class AuthService {
             } catch (e) {
                 this.logout();
             }
+        }
+    }
+
+    updateCurrentUser(user: any) {
+        const currentUser = this.currentUserSubject.value;
+        if (currentUser) {
+            this.currentUserSubject.next({
+                ...currentUser,
+                nombre: user.nombre,
+                email: user.email,
+                foto_perfil: user.foto_perfil
+            });
         }
     }
 }

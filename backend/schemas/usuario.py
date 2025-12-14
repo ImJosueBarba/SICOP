@@ -17,6 +17,7 @@ class UsuarioBase(BaseModel):
     telefono: Optional[str] = Field(None, max_length=20)
     activo: bool = True
     fecha_contratacion: Optional[date] = None
+    foto_perfil: Optional[str] = None
     
     # Auth fields
     username: str = Field(..., min_length=3, max_length=50)
@@ -40,6 +41,7 @@ class UsuarioUpdate(BaseModel):
     fecha_contratacion: Optional[date] = None
     rol: Optional[UserRole] = None
     password: Optional[str] = Field(None, min_length=6)
+    foto_perfil: Optional[str] = None
 
 
 # Schema para respuesta

@@ -5,6 +5,8 @@ Sistema de Gestión de Planta de Tratamiento de Agua "La Esperanza"
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 from core.database import engine
 from models import Base
 
@@ -41,6 +43,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Configurar carpeta de archivos estáticos para fotos de perfil
+uploads_dir = Path("uploads")
+uploads_dir.mkdir(exist_ok=True)
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 # Incluir routers
 app.include_router(usuarios.router, prefix="/api/usuarios", tags=["Usuarios"])

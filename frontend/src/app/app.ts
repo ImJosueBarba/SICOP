@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
-import { Navbar } from './layout/navbar/navbar';
+import { MainLayout } from './layout/main-layout/main-layout';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, CommonModule],
+  imports: [RouterOutlet, MainLayout, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -22,7 +22,7 @@ export class App {
     });
   }
 
-  shouldShowNavbar(): boolean {
+  shouldShowLayout(): boolean {
     return !this.currentUrl.includes('/login');
   }
 }

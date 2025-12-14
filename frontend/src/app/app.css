@@ -1,10 +1,6 @@
-.main-content {
+/* App Root Styles */
+:host {
+  display: block;
+  width: 100%;
   min-height: 100vh;
-  background: transparent;
-}
-
-/* Cuando hay navbar, agregar padding top */
-app-navbar + .main-content {
-  padding-top: 70px;
-  min-height: calc(100vh - 70px);
 }

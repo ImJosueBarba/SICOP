@@ -31,6 +31,7 @@ class Usuario(Base):
     username = Column(String(50), unique=True, index=True, nullable=False)
     hashed_password = Column(String(255), nullable=False)
     rol = Column(Enum(UserRole, name='userole', create_type=False), default=UserRole.OPERADOR, nullable=False)
+    foto_perfil = Column(String(500), nullable=True)  # URL o ruta de la foto de perfil
     
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

@@ -3,9 +3,13 @@ Router para operaciones CRUD de Usuarios
 Sistema de Gestión de Usuarios con roles (Administrador y Operador)
 """
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File, Form
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
+import os
+import shutil
+from pathlib import Path
+import uuid
 
 from core.database import get_db
 from models.usuario import Usuario, UserRole
@@ -19,6 +23,10 @@ from core.security import get_password_hash
 from core.dependencies import get_current_active_user
 
 router = APIRouter()
+
+# Directorio para guardar fotos de perfil
+UPLOAD_DIR = Path("uploads/profile_photos")
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def check_admin_role(current_user: Usuario):
@@ -128,14 +136,16 @@ def create_usuario(
 
 
 @router.put("/{usuario_id}", response_model=UsuarioResponse)
-def update_usuario(
+async def update_usuario(
     usuario_id: int,
-    usuario_update: UsuarioUpdate,
+    nombre: Optional[str] = Form(None),
+    email: Optional[str] = Form(None),
+    foto_perfil: Optional[UploadFile] = File(None),
     db: Session = Depends(get_db),
     current_user: Usuario = Depends(get_current_active_user)
 ):
     """
-    Actualizar un usuario
+    Actualizar un usuario (incluye foto de perfil)
     - Administradores: pueden actualizar cualquier usuario
     - Operadores: solo pueden actualizar algunos campos de su propio perfil
     """
@@ -157,23 +167,13 @@ def update_usuario(
             detail="No tiene permisos para actualizar este usuario"
         )
     
-    # Preparar datos para actualizar
-    update_data = usuario_update.model_dump(exclude_unset=True)
-    
-    # Si no es admin, no puede cambiar ciertos campos
-    if not is_admin:
-        restricted_fields = ['rol', 'activo']
-        for field in restricted_fields:
-            if field in update_data:
-                raise HTTPException(
-                    status_code=status.HTTP_403_FORBIDDEN,
-                    detail=f"No tiene permisos para modificar el campo '{field}'"
-                )
-    
-    # Verificar email único si se está actualizando
-    if 'email' in update_data and update_data['email']:
+    # Actualizar campos
+    if nombre:
+        db_usuario.nombre = nombre
+    if email:
+        # Verificar email único
         existing = db.query(Usuario).filter(
-            Usuario.email == update_data['email'],
+            Usuario.email == email,
             Usuario.id != usuario_id
         ).first()
         if existing:
@@ -181,14 +181,36 @@ def update_usuario(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="El email ya está registrado por otro usuario"
             )
+        db_usuario.email = email
     
-    # Actualizar contraseña si se proporciona
-    if 'password' in update_data and update_data['password']:
-        update_data['hashed_password'] = get_password_hash(update_data.pop('password'))
-    
-    # Aplicar actualizaciones
-    for field, value in update_data.items():
-        setattr(db_usuario, field, value)
+    # Manejar foto de perfil
+    if foto_perfil and foto_perfil.filename:
+        # Validar tipo de archivo
+        allowed_extensions = {'.jpg', '.jpeg', '.png', '.gif'}
+        file_ext = Path(foto_perfil.filename).suffix.lower()
+        
+        if file_ext not in allowed_extensions:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Formato de imagen no permitido. Use JPG, PNG o GIF"
+            )
+        
+        # Eliminar foto anterior si existe
+        if db_usuario.foto_perfil and os.path.exists(db_usuario.foto_perfil):
+            try:
+                os.remove(db_usuario.foto_perfil)
+            except:
+                pass
+        
+        # Guardar nueva foto
+        file_name = f"{uuid.uuid4()}{file_ext}"
+        file_path = UPLOAD_DIR / file_name
+        
+        with file_path.open("wb") as buffer:
+            shutil.copyfileobj(foto_perfil.file, buffer)
+        
+        # Guardar la ruta relativa en la base de datos
+        db_usuario.foto_perfil = f"/uploads/profile_photos/{file_name}"
     
     db.commit()
     db.refresh(db_usuario)

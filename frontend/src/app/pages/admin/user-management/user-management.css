@@ -277,6 +277,61 @@
     }
 }
 
+/* Dark mode support */
+html.dark .user-management-container {
+    background: #0f172a;
+}
+
+html.dark .header-section {
+    color: #f9fafb;
+}
+
+html.dark ::ng-deep .p-card {
+    background: rgba(30, 41, 59, 0.98) !important;
+    border-color: rgba(55, 65, 81, 0.4) !important;
+}
+
+html.dark ::ng-deep .p-toolbar {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border-bottom-color: rgba(55, 65, 81, 0.5) !important;
+}
+
+html.dark ::ng-deep .search-input {
+    background: rgba(55, 65, 81, 0.95) !important;
+    border-color: rgba(75, 85, 99, 0.5) !important;
+    color: #f9fafb !important;
+}
+
+html.dark ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    background: rgba(30, 41, 59, 0.8) !important;
+    color: #f9fafb !important;
+}
+
+html.dark ::ng-deep .p-datatable .p-datatable-tbody > tr {
+    background: rgba(30, 41, 59, 0.5) !important;
+}
+
+html.dark ::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+    background: rgba(51, 65, 85, 0.6) !important;
+}
+
+html.dark .form-field label {
+    color: #d1d5db !important;
+}
+
+html.dark .form-field input,
+html.dark .form-field .p-inputtext {
+    background: #374151 !important;
+    border-color: #4b5563 !important;
+    color: #f9fafb !important;
+}
+
+html.dark .form-field input:focus,
+html.dark .form-field .p-inputtext:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25) !important;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .user-management-container {

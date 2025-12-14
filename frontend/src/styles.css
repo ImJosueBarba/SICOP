@@ -6,14 +6,45 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Light mode colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --border-color: #e5e7eb;
+  --accent-color: #2563eb;
+  --accent-hover: #1d4ed8;
+}
+
+html,
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: 
-    linear-gradient(135deg, rgba(15, 32, 39, 0.96) 0%, rgba(32, 58, 67, 0.96) 50%, rgba(44, 83, 100, 0.96) 100%),
-    url('/images/fondo.png') center/cover no-repeat fixed;
+  background: var(--bg-secondary);
   min-height: 100vh;
-  color: #333;
+  color: var(--text-primary);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode */
+html.dark {
+  --bg-primary: #111827;
+  --bg-secondary: #0f172a;
+  --bg-tertiary: #1e293b;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --border-color: #374151;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+}
+
+html.dark body {
+  background: #0f172a !important;
+  color: #f9fafb !important;
 }
 
 /* Smooth scrolling */
@@ -62,4 +93,137 @@ html {
 
 router-outlet + * {
   animation: fadeIn 0.3s ease-in;
+}
+
+/* PrimeNG Dark Mode Overrides */
+html.dark .p-component {
+  color: #f9fafb;
+}
+
+html.dark .p-card {
+  background: #1e293b !important;
+  border-color: #374151 !important;
+}
+
+html.dark .p-card .p-card-header {
+  background: #334155 !important;
+  color: #f9fafb !important;
+  border-bottom-color: #4b5563 !important;
+}
+
+html.dark .p-card .p-card-body {
+  background: transparent !important;
+}
+
+html.dark .p-inputtext,
+html.dark .p-inputnumber-input,
+html.dark .p-calendar-input,
+html.dark .p-select,
+html.dark .p-textarea,
+html.dark .p-dropdown {
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+html.dark .p-inputtext:enabled:focus,
+html.dark .p-inputnumber-input:enabled:focus,
+html.dark .p-calendar-input:enabled:focus,
+html.dark .p-textarea:enabled:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25) !important;
+}
+
+html.dark .p-float-label label {
+  color: #9ca3af !important;
+}
+
+html.dark .p-float-label input:focus ~ label,
+html.dark .p-float-label input.p-filled ~ label,
+html.dark .p-float-label textarea:focus ~ label,
+html.dark .p-float-label textarea.p-filled ~ label,
+html.dark .p-float-label .p-inputwrapper-focus ~ label,
+html.dark .p-float-label .p-inputwrapper-filled ~ label {
+  color: #3b82f6 !important;
+}
+
+html.dark .p-button.p-button-outlined {
+  border-color: #4b5563 !important;
+  color: #9ca3af !important;
+}
+
+html.dark .p-button.p-button-outlined:hover {
+  background: #374151 !important;
+  border-color: #6b7280 !important;
+  color: #d1d5db !important;
+}
+
+html.dark .p-datatable .p-datatable-thead > tr > th {
+  background: #374151 !important;
+  color: #f9fafb !important;
+  border-color: #4b5563 !important;
+}
+
+html.dark .p-datatable .p-datatable-tbody > tr {
+  background: #1e293b !important;
+  color: #f9fafb !important;
+}
+
+html.dark .p-datatable .p-datatable-tbody > tr > td {
+  border-color: #374151 !important;
+}
+
+html.dark .p-datatable .p-datatable-tbody > tr:hover {
+  background: #334155 !important;
+}
+
+html.dark .p-paginator {
+  background: #1e293b !important;
+  color: #f9fafb !important;
+  border-color: #374151 !important;
+}
+
+html.dark .p-paginator .p-paginator-pages .p-paginator-page {
+  color: #9ca3af !important;
+}
+
+html.dark .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: #3b82f6 !important;
+  color: white !important;
+}
+
+html.dark .p-calendar-panel {
+  background: #1e293b !important;
+  border-color: #374151 !important;
+}
+
+html.dark .p-datepicker table td {
+  color: #f9fafb !important;
+}
+
+html.dark .p-datepicker table td.p-datepicker-today > span {
+  background: #374151 !important;
+  color: #3b82f6 !important;
+}
+
+html.dark .p-dropdown-panel {
+  background: #1e293b !important;
+  border-color: #374151 !important;
+}
+
+html.dark .p-dropdown-item {
+  color: #f9fafb !important;
+}
+
+html.dark .p-dropdown-item:hover {
+  background: #374151 !important;
+}
+
+html.dark .p-toast .p-toast-message {
+  background: #1e293b !important;
+  border-color: #374151 !important;
+}
+
+html.dark .p-toast .p-toast-message .p-toast-message-content {
+  color: #f9fafb !important;
 }
