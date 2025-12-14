@@ -1,212 +1,110 @@
-<div class="form-container">
-  <div class="header-section">
-    <p-button icon="pi pi-arrow-left" label="Volver" [text]="true" (onClick)="goBack()">
-    </p-button>
-    <div class="title-section">
-      <h1><i class="pi pi-cog"></i> Control de Operación</h1>
-      <p>Registro de Coagulación, Floculación y Cloración</p>
+<div class="mx-auto max-w-(--breakpoint-2xl) p-4 md:p-6">
+  <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <h2 class="text-title-md2 font-semibold text-gray-800 dark:text-white">Control de Operación</h2>
+      <p class="text-sm text-gray-600 dark:text-gray-400">Registro de Coagulación, Floculación y Cloración</p>
     </div>
+    <button type="button" (click)="goBack()" class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
+      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      Volver
+    </button>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <p-card header="Fecha y Hora" [style]="{'margin-bottom': '1.5rem'}">
-      <div class="p-grid">
-        <div class="p-col-12 p-md-6">
-          <p-floatlabel>
-            <input pInputText id="fecha" type="date" formControlName="fecha" class="w-full" />
-            <label for="fecha">Fecha *</label>
-          </p-floatlabel>
-        </div>
-        <div class="p-col-12 p-md-6">
-          <p-floatlabel>
-            <input pInputText id="hora" type="time" formControlName="hora" class="w-full" />
-            <label for="hora">Hora *</label>
-          </p-floatlabel>
-        </div>
+    <div class="mb-6 rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+      <div class="border-b border-gray-100 px-5 py-4 dark:border-gray-800">
+        <h3 class="text-base font-medium text-gray-800 dark:text-white/90">Fecha y Hora</h3>
       </div>
-    </p-card>
-
-    <div class="two-column-layout">
-      <!-- Columna Izquierda -->
-      <div class="column-left">
-        <!-- Turbedad -->
-        <p-card header="Turbedad">
-          <div class="p-grid">
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="turbedad_ac" formControlName="turbedad_ac" [minFractionDigits]="2"
-                  [maxFractionDigits]="2" suffix=" FTU" styleClass="w-full"></p-inputnumber>
-                <label for="turbedad_ac">Agua Cruda</label>
-              </p-floatlabel>
-            </div>
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="turbedad_at" formControlName="turbedad_at" [minFractionDigits]="2"
-                  [maxFractionDigits]="2" suffix=" FTU" styleClass="w-full"></p-inputnumber>
-                <label for="turbedad_at">Agua Tratada</label>
-              </p-floatlabel>
-            </div>
+      <div class="space-y-4 p-5 sm:p-6">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Fecha *</label>
+            <input type="date" formControlName="fecha" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:focus:border-brand-800"/>
           </div>
-        </p-card>
-
-        <!-- pH -->
-        <p-card header="Niveles de pH">
-          <div class="p-grid">
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="ph_ac" formControlName="ph_ac" [minFractionDigits]="2" [maxFractionDigits]="2"
-                  [min]="0" [max]="14" styleClass="w-full"></p-inputnumber>
-                <label for="ph_ac">pH Agua Cruda</label>
-              </p-floatlabel>
-            </div>
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="ph_sulf" formControlName="ph_sulf" [minFractionDigits]="2"
-                  [maxFractionDigits]="2" [min]="0" [max]="14" styleClass="w-full"></p-inputnumber>
-                <label for="ph_sulf">pH con Sulfato</label>
-              </p-floatlabel>
-            </div>
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="ph_at" formControlName="ph_at" [minFractionDigits]="2" [maxFractionDigits]="2"
-                  [min]="0" [max]="14" styleClass="w-full"></p-inputnumber>
-                <label for="ph_at">pH Agua Tratada</label>
-              </p-floatlabel>
-            </div>
+          <div>
+            <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Hora *</label>
+            <input type="time" formControlName="hora" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:focus:border-brand-800"/>
           </div>
-        </p-card>
-
-        <!-- Presión -->
-        <p-card header="Presión">
-          <div class="p-grid">
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="presion_psi" formControlName="presion_psi" [minFractionDigits]="2"
-                  [maxFractionDigits]="2" suffix=" PSI" styleClass="w-full"></p-inputnumber>
-                <label for="presion_psi">PSI</label>
-              </p-floatlabel>
-            </div>
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="presion_pre" formControlName="presion_pre" [minFractionDigits]="2"
-                  [maxFractionDigits]="2" suffix=" Kg/h" styleClass="w-full"></p-inputnumber>
-                <label for="presion_pre">PRE</label>
-              </p-floatlabel>
-            </div>
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="presion_pos" formControlName="presion_pos" [minFractionDigits]="2"
-                  [maxFractionDigits]="2" suffix=" Kg/h" styleClass="w-full"></p-inputnumber>
-                <label for="presion_pos">POS</label>
-              </p-floatlabel>
-            </div>
-          </div>
-        </p-card>
-      </div>
-
-      <!-- Columna Derecha -->
-      <div class="column-right">
-        <!-- Dosis de Químicos -->
-        <p-card header="Dosis de Químicos">
-          <div class="p-grid">
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="dosis_sulfato" formControlName="dosis_sulfato" [minFractionDigits]="3"
-                  [maxFractionDigits]="3" suffix=" l/s" styleClass="w-full"></p-inputnumber>
-                <label for="dosis_sulfato">Sulfato</label>
-              </p-floatlabel>
-            </div>
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="dosis_cal" formControlName="dosis_cal" [minFractionDigits]="3"
-                  [maxFractionDigits]="3" suffix=" l/s" styleClass="w-full"></p-inputnumber>
-                <label for="dosis_cal">Cal</label>
-              </p-floatlabel>
-            </div>
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="dosis_floergel" formControlName="dosis_floergel" [minFractionDigits]="3"
-                  [maxFractionDigits]="3" suffix=" l/s" styleClass="w-full"></p-inputnumber>
-                <label for="dosis_floergel">Floergel</label>
-              </p-floatlabel>
-            </div>
-          </div>
-        </p-card>
-
-        <!-- Otros Parámetros -->
-        <p-card header="Otros Parámetros">
-          <div class="p-grid">
-            <div class="p-col-12">
-              <p-floatlabel>
-                <input pInputText id="color" formControlName="color" class="w-full" />
-                <label for="color">Color</label>
-              </p-floatlabel>
-            </div>
-            <!-- Clarificación -->
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="clarificacion_is" formControlName="clarificacion_is" [minFractionDigits]="2"
-                  [maxFractionDigits]="2" suffix=" K/Cm³" styleClass="w-full"></p-inputnumber>
-                <label for="clarificacion_is">Clarificación IS</label>
-              </p-floatlabel>
-            </div>
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="clarificacion_cs" formControlName="clarificacion_cs" [minFractionDigits]="2"
-                  [maxFractionDigits]="2" suffix=" K/Cm³" styleClass="w-full"></p-inputnumber>
-                <label for="clarificacion_cs">Clarificación CS</label>
-              </p-floatlabel>
-            </div>
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="clarificacion_fs" formControlName="clarificacion_fs" [minFractionDigits]="2"
-                  [maxFractionDigits]="2" suffix=" K/Cm³" styleClass="w-full"></p-inputnumber>
-                <label for="clarificacion_fs">Clarificación FS</label>
-              </p-floatlabel>
-            </div>
-
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="ff" formControlName="ff" [minFractionDigits]="2" [maxFractionDigits]="2"
-                  styleClass="w-full"></p-inputnumber>
-                <label for="ff">Factor de Forma</label>
-              </p-floatlabel>
-            </div>
-            <div class="p-col-12">
-              <p-floatlabel>
-                <p-inputnumber inputId="cloro_residual" formControlName="cloro_residual" [minFractionDigits]="2"
-                  [maxFractionDigits]="2" suffix=" mg/l" styleClass="w-full"></p-inputnumber>
-                <label for="cloro_residual">Cloro Residual</label>
-              </p-floatlabel>
-            </div>
-          </div>
-        </p-card>
+        </div>
       </div>
     </div>
 
-    <!-- Observaciones (ancho completo) -->
-    <p-card header="Observaciones" styleClass="card-section">
-      <p-floatlabel>
-        <textarea pInputTextarea id="observaciones" formControlName="observaciones" rows="4" class="w-full"></textarea>
-        <label for="observaciones">Comentarios adicionales</label>
-      </p-floatlabel>
-    </p-card>
+    <div class="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div class="space-y-6">
+        <div class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+          <div class="border-b border-gray-100 px-5 py-4 dark:border-gray-800"><h3 class="text-base font-medium text-gray-800 dark:text-white/90">Turbedad</h3></div>
+          <div class="space-y-4 p-5 sm:p-6">
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Agua Cruda (FTU)</label><input type="number" formControlName="turbedad_ac" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Agua Tratada (FTU)</label><input type="number" formControlName="turbedad_at" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+          </div>
+        </div>
 
-    <!-- Mensajes -->
+        <div class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+          <div class="border-b border-gray-100 px-5 py-4 dark:border-gray-800"><h3 class="text-base font-medium text-gray-800 dark:text-white/90">Niveles de pH</h3></div>
+          <div class="space-y-4 p-5 sm:p-6">
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">pH Agua Cruda</label><input type="number" formControlName="ph_ac" step="0.01" min="0" max="14" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">pH con Sulfato</label><input type="number" formControlName="ph_sulf" step="0.01" min="0" max="14" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">pH Agua Tratada</label><input type="number" formControlName="ph_at" step="0.01" min="0" max="14" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+          <div class="border-b border-gray-100 px-5 py-4 dark:border-gray-800"><h3 class="text-base font-medium text-gray-800 dark:text-white/90">Presión</h3></div>
+          <div class="space-y-4 p-5 sm:p-6">
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">PSI</label><input type="number" formControlName="presion_psi" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">PRE (Kg/h)</label><input type="number" formControlName="presion_pre" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">POS (Kg/h)</label><input type="number" formControlName="presion_pos" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+          <div class="border-b border-gray-100 px-5 py-4 dark:border-gray-800"><h3 class="text-base font-medium text-gray-800 dark:text-white/90">Dosis de Químicos</h3></div>
+          <div class="space-y-4 p-5 sm:p-6">
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Sulfato (l/s)</label><input type="number" formControlName="dosis_sulfato" step="0.001" placeholder="0.000" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Cal (l/s)</label><input type="number" formControlName="dosis_cal" step="0.001" placeholder="0.000" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Floergel (l/s)</label><input type="number" formControlName="dosis_floergel" step="0.001" placeholder="0.000" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+          <div class="border-b border-gray-100 px-5 py-4 dark:border-gray-800"><h3 class="text-base font-medium text-gray-800 dark:text-white/90">Otros Parámetros</h3></div>
+          <div class="space-y-4 p-5 sm:p-6">
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Color</label><input type="text" formControlName="color" placeholder="Descripción del color" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Clarificación IS (K/Cm³)</label><input type="number" formControlName="clarificacion_is" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Clarificación CS (K/Cm³)</label><input type="number" formControlName="clarificacion_cs" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Clarificación FS (K/Cm³)</label><input type="number" formControlName="clarificacion_fs" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Factor de Forma</label><input type="number" formControlName="ff" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+            <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Cloro Residual (mg/l)</label><input type="number" formControlName="cloro_residual" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-6 rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+      <div class="border-b border-gray-100 px-5 py-4 dark:border-gray-800"><h3 class="text-base font-medium text-gray-800 dark:text-white/90">Observaciones</h3></div>
+      <div class="p-5 sm:p-6"><textarea formControlName="observaciones" rows="4" placeholder="Comentarios adicionales..." class="w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"></textarea></div>
+    </div>
+
     @if (successMessage) {
-    <p-message severity="success" [text]="successMessage" styleClass="message-full"></p-message>
+      <div class="mb-4 rounded-lg bg-green-50 p-4 text-sm text-green-800 dark:bg-green-900/20 dark:text-green-400"><span class="font-medium">¡Éxito!</span> {{ successMessage }}</div>
     }
     @if (errorMessage) {
-    <p-message severity="error" [text]="errorMessage" styleClass="message-full"></p-message>
+      <div class="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900/20 dark:text-red-400"><span class="font-medium">Error:</span> {{ errorMessage }}</div>
     }
 
-    <!-- Acciones -->
-    <div class="form-actions">
-      <p-button label="Cancelar" icon="pi pi-times" [outlined]="true" severity="secondary" (onClick)="goBack()">
-      </p-button>
-      <p-button type="submit" [label]="loading ? 'Guardando...' : 'Guardar Registro'" icon="pi pi-save"
-        [disabled]="form.invalid || loading" [loading]="loading">
-      </p-button>
+    <div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+      <button type="button" (click)="goBack()" class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>Cancelar</button>
+      <button type="submit" [disabled]="form.invalid || loading" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-blue-700 dark:hover:bg-blue-600">
+        @if (loading) {
+          <svg class="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+          Guardando...
+        } @else {
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Guardar Registro
+        }
+      </button>
     </div>
   </form>
 </div>

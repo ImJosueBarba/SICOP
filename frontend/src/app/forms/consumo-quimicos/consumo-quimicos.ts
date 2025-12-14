@@ -3,31 +3,14 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location, CommonModule } from '@angular/common';
-import { InputText } from 'primeng/inputtext';
-import { InputNumber } from 'primeng/inputnumber';
-import { Button } from 'primeng/button';
-import { Card } from 'primeng/card';
-import { FloatLabel } from 'primeng/floatlabel';
-import { Textarea } from 'primeng/textarea';
-import { Message } from 'primeng/message';
-import { Select } from 'primeng/select';
 
 @Component({
   selector: 'app-consumo-quimicos',
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    InputText,
-    InputNumber,
-    Button,
-    Card,
-    FloatLabel,
-    Textarea,
-    Message,
-    Select
+    ReactiveFormsModule
   ],
   templateUrl: './consumo-quimicos.html',
-  styleUrl: './consumo-quimicos.css',
 })
 export class ConsumoQuimicos implements OnInit {
   private fb = inject(FormBuilder);

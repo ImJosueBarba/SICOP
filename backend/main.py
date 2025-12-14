@@ -38,7 +38,11 @@ app = FastAPI(
 # Configurar CORS para permitir peticiones desde Angular
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],  # URL de Angular en desarrollo
+    allow_origins=[
+        "http://localhost:4200",  # Angular en desarrollo local
+        "http://localhost",       # Frontend en Docker
+        "http://localhost:80"     # Frontend en Docker (explícito)
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

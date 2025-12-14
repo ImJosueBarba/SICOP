@@ -1,213 +1,104 @@
-<div class="form-container">
-    <p-card header="Matriz 1: Consumo de Químicos en Planta (Mensual)" subheader="Registro mensual de consumo de químicos">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            
-            <!-- Datos Generales -->
-            <p-panel header="Datos Generales" [toggleable]="true">
-                <div class="grid-form">
-                    <div class="field">
-                        <p-floatLabel>
-                            <input pInputText id="fecha" type="date" formControlName="fecha" class="w-full" />
-                            <label for="fecha">Fecha de Registro</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-select [options]="meses" formControlName="mes" optionLabel="label" optionValue="value" placeholder="Seleccione Mes" class="w-full"></p-select>
-                            <label for="mes">Mes</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="anio" formControlName="anio" [useGrouping]="false" class="w-full"></p-inputNumber>
-                            <label for="anio">Año</label>
-                        </p-floatLabel>
-                    </div>
-                </div>
-            </p-panel>
+<div class="mx-auto max-w-(--breakpoint-2xl) p-4 md:p-6">
+  <div class="mb-6"><h2 class="text-title-md2 font-semibold text-gray-800 dark:text-white">Matriz 1: Consumo de Químicos (Mensual)</h2><p class="text-sm text-gray-600 dark:text-gray-400">Registro mensual de consumo de químicos en planta</p></div>
+  
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+      <h3 class="mb-4 text-lg font-medium text-gray-800 dark:text-white/90">Datos Generales</h3>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Fecha de Registro</label><input type="date" formControlName="fecha" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Mes</label><select formControlName="mes" class="h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:focus:border-brand-800"><option value="">Seleccione</option>@for (m of meses; track m.value) {<option [value]="m.value">{{m.label}}</option>}</select></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Año</label><input type="number" formControlName="anio" placeholder="2024" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+      </div>
+    </div>
 
-            <p-divider></p-divider>
+    <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+      <h3 class="mb-4 text-lg font-medium text-gray-800 dark:text-white/90">Sulfato de Aluminio (KG)</h3>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Consumo (KG)</label><input type="number" formControlName="sulfato_con" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Ingreso (KG)</label><input type="number" formControlName="sulfato_ing" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Guía #</label><input type="text" formControlName="sulfato_guia" placeholder="Número de guía" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Remanente (KG)</label><input type="number" formControlName="sulfato_re" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+      </div>
+    </div>
 
-            <!-- Sulfato de Aluminio -->
-            <p-panel header="Sulfato de Aluminio (KG)" [toggleable]="true">
-                <div class="grid-form">
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="sulfato_con" formControlName="sulfato_con" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="sulfato_con">Consumo (KG)</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="sulfato_ing" formControlName="sulfato_ing" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="sulfato_ing">Ingreso (KG)</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <input pInputText id="sulfato_guia" formControlName="sulfato_guia" class="w-full" />
-                            <label for="sulfato_guia">Guía #</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="sulfato_re" formControlName="sulfato_re" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="sulfato_re">Remanente (KG)</label>
-                        </p-floatLabel>
-                    </div>
-                </div>
-            </p-panel>
+    <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+      <h3 class="mb-4 text-lg font-medium text-gray-800 dark:text-white/90">Cal (Sacos de Calcio)</h3>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Consumo (Sacos)</label><input type="number" formControlName="cal_con" placeholder="0" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Ingreso (Sacos)</label><input type="number" formControlName="cal_ing" placeholder="0" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Guía #</label><input type="text" formControlName="cal_guia" placeholder="Número de guía" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+      </div>
+    </div>
 
-            <p-divider></p-divider>
+    <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+      <h3 class="mb-4 text-lg font-medium text-gray-800 dark:text-white/90">Hipoclorito de Calcio</h3>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Consumo</label><input type="number" formControlName="hipoclorito_con" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Ingreso</label><input type="number" formControlName="hipoclorito_ing" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Guía #</label><input type="text" formControlName="hipoclorito_guia" placeholder="Número de guía" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+      </div>
+    </div>
 
-            <!-- Cal -->
-            <p-panel header="Cal (Sacos de Calcio)" [toggleable]="true">
-                <div class="grid-form">
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="cal_con" formControlName="cal_con" class="w-full"></p-inputNumber>
-                            <label for="cal_con">Consumo (Sacos)</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="cal_ing" formControlName="cal_ing" class="w-full"></p-inputNumber>
-                            <label for="cal_ing">Ingreso (Sacos)</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <input pInputText id="cal_guia" formControlName="cal_guia" class="w-full" />
-                            <label for="cal_guia">Guía #</label>
-                        </p-floatLabel>
-                    </div>
-                </div>
-            </p-panel>
+    <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+      <h3 class="mb-4 text-lg font-medium text-gray-800 dark:text-white/90">Gas Licuado de Cloro</h3>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Consumo</label><input type="number" formControlName="cloro_gas_con" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Ingreso Balón</label><input type="number" formControlName="cloro_gas_ing_bal" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Ingreso Bodega</label><input type="number" formControlName="cloro_gas_ing_bdg" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Guía #</label><input type="text" formControlName="cloro_gas_guia" placeholder="Número de guía" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Egreso</label><input type="number" formControlName="cloro_gas_egre" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+      </div>
+    </div>
 
-            <p-divider></p-divider>
+    <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+      <h3 class="mb-4 text-lg font-medium text-gray-800 dark:text-white/90">Producción y Resumen Mensual</h3>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Producción (m³/día)</label><input type="number" formControlName="produccion_m3_dia" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Inicio Mes (KG)</label><input type="number" formControlName="inicio_mes_kg" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Ingreso Mes (KG)</label><input type="number" formControlName="ingreso_mes_kg" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Consumo Mes (KG)</label><input type="number" formControlName="consumo_mes_kg" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Egreso Mes (KG)</label><input type="number" formControlName="egreso_mes_kg" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+        <div><label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Fin de Mes (KG)</label><input type="number" formControlName="fin_mes_kg" step="0.01" placeholder="0.00" class="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"/></div>
+      </div>
+    </div>
 
-            <!-- Hipoclorito de Calcio -->
-            <p-panel header="Hipoclorito de Calcio" [toggleable]="true">
-                <div class="grid-form">
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="hipoclorito_con" formControlName="hipoclorito_con" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="hipoclorito_con">Consumo</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="hipoclorito_ing" formControlName="hipoclorito_ing" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="hipoclorito_ing">Ingreso</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <input pInputText id="hipoclorito_guia" formControlName="hipoclorito_guia" class="w-full" />
-                            <label for="hipoclorito_guia">Guía #</label>
-                        </p-floatLabel>
-                    </div>
-                </div>
-            </p-panel>
+    <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03]">
+      <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">Observaciones</label>
+      <textarea formControlName="observaciones" rows="3" placeholder="Observaciones adicionales..." class="w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 shadow-theme-xs focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"></textarea>
+    </div>
 
-            <p-divider></p-divider>
+    @if (successMessage) {
+      <div class="mb-4 rounded-lg bg-green-50 p-4 text-sm text-green-800 dark:bg-green-900/20 dark:text-green-400">
+        <span class="font-medium">¡Éxito!</span> {{ successMessage }}
+      </div>
+    }
+    @if (errorMessage) {
+      <div class="mb-4 rounded-lg bg-red-50 p-4 text-sm text-red-800 dark:bg-red-900/20 dark:text-red-400">
+        <span class="font-medium">Error:</span> {{ errorMessage }}
+      </div>
+    }
 
-            <!-- Gas Licuado de Cloro -->
-            <p-panel header="Gas Licuado de Cloro" [toggleable]="true">
-                <div class="grid-form">
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="cloro_gas_con" formControlName="cloro_gas_con" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="cloro_gas_con">Consumo</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="cloro_gas_ing_bal" formControlName="cloro_gas_ing_bal" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="cloro_gas_ing_bal">Ingreso Balón</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="cloro_gas_ing_bdg" formControlName="cloro_gas_ing_bdg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="cloro_gas_ing_bdg">Ingreso Bodega</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <input pInputText id="cloro_gas_guia" formControlName="cloro_gas_guia" class="w-full" />
-                            <label for="cloro_gas_guia">Guía #</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="cloro_gas_egre" formControlName="cloro_gas_egre" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="cloro_gas_egre">Egreso</label>
-                        </p-floatLabel>
-                    </div>
-                </div>
-            </p-panel>
-
-            <p-divider></p-divider>
-
-            <!-- Producción y Resumen -->
-            <p-panel header="Producción y Resumen Mensual" [toggleable]="true">
-                <div class="grid-form">
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="produccion_m3_dia" formControlName="produccion_m3_dia" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="produccion_m3_dia">Producción (m³/día)</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="inicio_mes_kg" formControlName="inicio_mes_kg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="inicio_mes_kg">Inicio Mes (KG)</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="ingreso_mes_kg" formControlName="ingreso_mes_kg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="ingreso_mes_kg">Ingreso Mes (KG)</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="consumo_mes_kg" formControlName="consumo_mes_kg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="consumo_mes_kg">Consumo Mes (KG)</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="egreso_mes_kg" formControlName="egreso_mes_kg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="egreso_mes_kg">Egreso Mes (KG)</label>
-                        </p-floatLabel>
-                    </div>
-                    <div class="field">
-                        <p-floatLabel>
-                            <p-inputNumber id="fin_mes_kg" formControlName="fin_mes_kg" [minFractionDigits]="2" class="w-full"></p-inputNumber>
-                            <label for="fin_mes_kg">Fin de Mes (KG)</label>
-                        </p-floatLabel>
-                    </div>
-                </div>
-            </p-panel>
-
-            <div class="field mt-4">
-                <p-floatLabel>
-                    <textarea pTextarea id="observaciones" formControlName="observaciones" rows="3" class="w-full"></textarea>
-                    <label for="observaciones">Observaciones</label>
-                </p-floatLabel>
-            </div>
-
-            <div class="form-actions mt-4 flex justify-content-end gap-2">
-                <p-button label="Cancelar" icon="pi pi-times" severity="secondary" (onClick)="goBack()"></p-button>
-                <p-button label="Guardar" icon="pi pi-check" type="submit" [loading]="loading"></p-button>
-            </div>
-
-            <div class="mt-3">
-                <p-message *ngIf="successMessage" severity="success" [text]="successMessage"></p-message>
-                <p-message *ngIf="errorMessage" severity="error" [text]="errorMessage"></p-message>
-            </div>
-        </form>
-    </p-card>
+    <div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+      <button type="button" (click)="goBack()" class="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+        Cancelar
+      </button>
+      <button type="submit" [disabled]="form.invalid || loading" class="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-blue-700 dark:hover:bg-blue-600">
+        @if (loading) {
+          <svg class="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Guardando...
+        } @else {
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          Guardar
+        }
+      </button>
+    </div>
+  </form>
 </div>
