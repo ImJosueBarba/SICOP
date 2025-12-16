@@ -9,6 +9,14 @@ import { MonitoreoFisicoquimico } from './forms/monitoreo-fisicoquimico/monitore
 import { Login } from './pages/login/login';
 import { authGuard } from './auth/auth.guard';
 
+// Importar componentes de reportes
+import { ControlOperacionReporte } from './pages/reportes/control-operacion-reporte/control-operacion-reporte';
+import { CloroLibreReporte } from './pages/reportes/cloro-libre-reporte/cloro-libre-reporte';
+import { MonitoreoFisicoquimicoReporte } from './pages/reportes/monitoreo-fisicoquimico-reporte/monitoreo-fisicoquimico-reporte';
+import { ProduccionFiltrosReporte } from './pages/reportes/produccion-filtros-reporte/produccion-filtros-reporte';
+import { ConsumoDiarioReporte } from './pages/reportes/consumo-diario-reporte/consumo-diario-reporte';
+import { ConsumoMensualReporte } from './pages/reportes/consumo-mensual-reporte/consumo-mensual-reporte';
+
 export const routes: Routes = [
   { path: 'login', component: Login },
   { path: '', component: Home, canActivate: [authGuard] },
@@ -103,6 +111,43 @@ export const routes: Routes = [
   {
     path: 'forms/monitoreo-fisicoquimico',
     component: MonitoreoFisicoquimico,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  // Rutas de reportes
+  {
+    path: 'reportes/control-operacion',
+    component: ControlOperacionReporte,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  {
+    path: 'reportes/cloro-libre',
+    component: CloroLibreReporte,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  {
+    path: 'reportes/monitoreo-fisicoquimico',
+    component: MonitoreoFisicoquimicoReporte,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  {
+    path: 'reportes/produccion-filtros',
+    component: ProduccionFiltrosReporte,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  {
+    path: 'reportes/consumo-diario',
+    component: ConsumoDiarioReporte,
+    canActivate: [authGuard],
+    data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
+  },
+  {
+    path: 'reportes/consumo-mensual',
+    component: ConsumoMensualReporte,
     canActivate: [authGuard],
     data: { roles: ['OPERADOR', 'ADMINISTRADOR'] }
   },

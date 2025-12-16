@@ -43,7 +43,7 @@ export class Sidebar implements OnInit {
     {
       label: 'Matrices',
       icon: 'pi-table',
-      roles: ['OPERADOR'],
+      roles: ['OPERADOR', 'ADMINISTRADOR'],
       children: [
         {
           label: 'Control de Operación',
@@ -66,7 +66,7 @@ export class Sidebar implements OnInit {
     {
       label: 'Producción',
       icon: 'pi-chart-line',
-      roles: ['OPERADOR'],
+      roles: ['OPERADOR', 'ADMINISTRADOR'],
       children: [
         {
           label: 'Producción de Filtros',
@@ -82,6 +82,44 @@ export class Sidebar implements OnInit {
           label: 'Consumo Mensual',
           icon: 'pi-calendar',
           route: '/forms/consumo-mensual'
+        }
+      ],
+      expanded: false
+    },
+    {
+      label: 'Reportes',
+      icon: 'pi-file-excel',
+      roles: ['OPERADOR', 'ADMINISTRADOR'],
+      children: [
+        {
+          label: 'Control de Operación',
+          icon: 'pi-eye',
+          route: '/reportes/control-operacion'
+        },
+        {
+          label: 'Control de Cloro Libre',
+          icon: 'pi-eye',
+          route: '/reportes/cloro-libre'
+        },
+        {
+          label: 'Monitoreo Fisicoquímico',
+          icon: 'pi-eye',
+          route: '/reportes/monitoreo-fisicoquimico'
+        },
+        {
+          label: 'Producción de Filtros',
+          icon: 'pi-eye',
+          route: '/reportes/produccion-filtros'
+        },
+        {
+          label: 'Consumo Diario',
+          icon: 'pi-eye',
+          route: '/reportes/consumo-diario'
+        },
+        {
+          label: 'Consumo Mensual',
+          icon: 'pi-eye',
+          route: '/reportes/consumo-mensual'
         }
       ],
       expanded: false
