@@ -49,17 +49,21 @@ export class AuthService {
         await this.loadUserFromToken();
     }
 
-    login(username: string, password: string): Observable<AuthResponse> {
+    async login(username: string, password: string): Promise<void> {
         const formData = new FormData();
         formData.append('username', username);
         formData.append('password', password);
 
-        return this.http.post<AuthResponse>(`${this.apiUrl}/token`, formData).pipe(
-            tap(response => {
-                localStorage.setItem(this.tokenKey, response.access_token);
-                this.loadUserFromToken();
-            })
-        );
+        try {
+            const response = await firstValueFrom(
+                this.http.post<AuthResponse>(`${this.apiUrl}/token`, formData)
+            );
+            
+            localStorage.setItem(this.tokenKey, response.access_token);
+            await this.loadUserFromToken();
+        } catch (error) {
+            throw error;
+        }
     }
 
     logout() {

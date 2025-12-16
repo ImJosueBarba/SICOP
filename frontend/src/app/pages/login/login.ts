@@ -27,21 +27,20 @@ export class Login {
     errorMessage = '';
     rememberMe = false;
 
-    onSubmit() {
+    async onSubmit() {
         if (this.form.valid) {
             this.loading = true;
             this.errorMessage = '';
             const { username, password } = this.form.value;
 
-            this.authService.login(username!, password!).subscribe({
-                next: () => {
-                    this.router.navigate(['/']);
-                },
-                error: (err: any) => {
-                    this.loading = false;
-                    this.errorMessage = 'Usuario o contraseña incorrectos';
-                }
-            });
+            try {
+                await this.authService.login(username!, password!);
+                this.loading = false;
+                this.router.navigate(['/']);
+            } catch (err: any) {
+                this.loading = false;
+                this.errorMessage = 'Usuario o contraseña incorrectos';
+            }
         }
     }
 }

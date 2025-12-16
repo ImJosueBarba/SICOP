@@ -41,14 +41,28 @@
         border: 1px solid rgba(255,255,255,0.4);
     }
 
+    .p-card .p-card-body {
+        padding: 0;
+    }
+
+    .p-card .p-card-content {
+        padding: 0;
+    }
+
     .p-toolbar {
         background: rgba(102, 126, 234, 0.1);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border: none;
         border-bottom: 1px solid rgba(102, 126, 234, 0.2);
-        padding: 1.25rem;
-        border-radius: 20px 20px 0 0;
+        padding: 1.25rem 1rem;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .p-toolbar .p-toolbar-start {
+        margin-left: 0;
+        padding-left: 0;
     }
 
     .p-toolbar .p-button-success {
@@ -96,6 +110,10 @@
             border: none;
         }
 
+        .p-datatable-thead > tr > th:first-child {
+            padding-left: 1rem;
+        }
+
         .p-datatable-tbody > tr {
             transition: all 0.2s ease;
         }
@@ -108,6 +126,10 @@
         .p-datatable-tbody > tr > td {
             padding: 1rem;
             border-bottom: 1px solid #e9ecef;
+        }
+
+        .p-datatable-tbody > tr > td:first-child {
+            padding-left: 1rem;
         }
     }
 
@@ -296,12 +318,14 @@ html.dark .page-subtitle {
 
 html.dark ::ng-deep .p-card {
     background: rgba(30, 41, 59, 0.98) !important;
-    border-color: rgba(55, 65, 81, 0.4) !important;
+    border: 1px solid rgba(55, 65, 81, 0.5) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
 }
 
 html.dark ::ng-deep .p-toolbar {
-    background: rgba(30, 41, 59, 0.8) !important;
-    border-bottom-color: rgba(55, 65, 81, 0.5) !important;
+    background: rgba(30, 41, 59, 0.9) !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(75, 85, 99, 0.4) !important;
 }
 
 html.dark ::ng-deep .search-input {
@@ -323,6 +347,91 @@ html.dark ::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
     background: rgba(51, 65, 85, 0.6) !important;
 }
 
+html.dark ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    color: #f9fafb !important;
+    border-bottom-color: rgba(75, 85, 99, 0.3) !important;
+}
+
+html.dark ::ng-deep .p-tag,
+html.dark ::ng-deep p-tag .p-tag,
+.dark ::ng-deep .p-tag,
+.dark ::ng-deep p-tag .p-tag {
+    background: rgba(59, 130, 246, 0.3) !important;
+    color: #93c5fd !important;
+    border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+html.dark ::ng-deep .p-tag.p-tag-success,
+html.dark ::ng-deep p-tag .p-tag.p-tag-success,
+.dark ::ng-deep .p-tag.p-tag-success,
+.dark ::ng-deep p-tag .p-tag.p-tag-success {
+    background: rgba(34, 197, 94, 0.3) !important;
+    color: #86efac !important;
+    border: 1px solid rgba(34, 197, 94, 0.4) !important;
+}
+
+html.dark ::ng-deep .p-tag.p-tag-danger,
+html.dark ::ng-deep p-tag .p-tag.p-tag-danger,
+.dark ::ng-deep .p-tag.p-tag-danger,
+.dark ::ng-deep p-tag .p-tag.p-tag-danger {
+    background: rgba(239, 68, 68, 0.3) !important;
+    color: #fca5a5 !important;
+    border: 1px solid rgba(239, 68, 68, 0.4) !important;
+}
+
+html.dark ::ng-deep .p-tag.p-tag-warning,
+html.dark ::ng-deep p-tag .p-tag.p-tag-warning,
+.dark ::ng-deep .p-tag.p-tag-warning,
+.dark ::ng-deep p-tag .p-tag.p-tag-warning {
+    background: rgba(251, 146, 60, 0.3) !important;
+    color: #fdba74 !important;
+    border: 1px solid rgba(251, 146, 60, 0.4) !important;
+}
+
+html.dark ::ng-deep .p-tag.p-tag-info,
+html.dark ::ng-deep p-tag .p-tag.p-tag-info,
+.dark ::ng-deep .p-tag.p-tag-info,
+.dark ::ng-deep p-tag .p-tag.p-tag-info {
+    background: rgba(59, 130, 246, 0.3) !important;
+    color: #93c5fd !important;
+    border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+html.dark ::ng-deep .p-tag .p-tag-value,
+.dark ::ng-deep .p-tag .p-tag-value {
+    color: inherit !important;
+}
+
+html.dark .username-badge,
+.dark .username-badge {
+    background: rgba(59, 130, 246, 0.3) !important;
+    color: #93c5fd !important;
+    border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+html.dark .username-badge i,
+.dark .username-badge i {
+    color: #93c5fd !important;
+}
+
+html.dark ::ng-deep .p-paginator {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border-top: 1px solid rgba(75, 85, 99, 0.3) !important;
+}
+
+html.dark ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+    color: #d1d5db !important;
+}
+
+html.dark ::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: rgba(59, 130, 246, 0.3) !important;
+    color: #93c5fd !important;
+}
+
+html.dark .empty-message {
+    color: #9ca3af !important;
+}
+
 html.dark .form-field label {
     color: #d1d5db !important;
 }
@@ -338,6 +447,45 @@ html.dark .form-field input:focus,
 html.dark .form-field .p-inputtext:focus {
     border-color: #3b82f6 !important;
     box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25) !important;
+}
+
+html.dark ::ng-deep .p-dialog .p-dialog-content {
+    background: #1e293b !important;
+    color: #f9fafb !important;
+}
+
+html.dark ::ng-deep .p-dialog .p-dialog-footer {
+    background: #1e293b !important;
+    border-top-color: rgba(75, 85, 99, 0.3) !important;
+}
+
+html.dark ::ng-deep .p-select {
+    background: #374151 !important;
+    border-color: #4b5563 !important;
+    color: #f9fafb !important;
+}
+
+html.dark ::ng-deep .p-select:hover {
+    border-color: #6b7280 !important;
+}
+
+html.dark ::ng-deep .p-select-overlay {
+    background: #374151 !important;
+    border-color: #4b5563 !important;
+}
+
+html.dark ::ng-deep .p-select-option {
+    color: #f9fafb !important;
+}
+
+html.dark ::ng-deep .p-select-option:hover {
+    background: #4b5563 !important;
+}
+
+html.dark ::ng-deep .p-password input {
+    background: #374151 !important;
+    border-color: #4b5563 !important;
+    color: #f9fafb !important;
 }
 
 /* Responsive */

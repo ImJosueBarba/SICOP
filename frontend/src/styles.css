@@ -232,3 +232,68 @@ html.dark .p-toast .p-toast-message {
 html.dark .p-toast .p-toast-message .p-toast-message-content {
   color: #f9fafb !important;
 }
+
+/* PrimeNG Tags - Dark Mode */
+html.dark .p-tag,
+html.dark p-tag .p-tag {
+  background: rgba(59, 130, 246, 0.3) !important;
+  color: #93c5fd !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+html.dark .p-tag.p-tag-success,
+html.dark p-tag .p-tag.p-tag-success {
+  background: rgba(34, 197, 94, 0.3) !important;
+  color: #86efac !important;
+  border: 1px solid rgba(34, 197, 94, 0.4) !important;
+}
+
+html.dark .p-tag.p-tag-danger,
+html.dark p-tag .p-tag.p-tag-danger {
+  background: rgba(239, 68, 68, 0.3) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+}
+
+html.dark .p-tag.p-tag-warning,
+html.dark p-tag .p-tag.p-tag-warning {
+  background: rgba(251, 146, 60, 0.3) !important;
+  color: #fdba74 !important;
+  border: 1px solid rgba(251, 146, 60, 0.4) !important;
+}
+
+html.dark .p-tag.p-tag-info,
+html.dark p-tag .p-tag.p-tag-info {
+  background: rgba(59, 130, 246, 0.3) !important;
+  color: #93c5fd !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+html.dark .p-tag .p-tag-value {
+  color: inherit !important;
+}
+
+/* Username Badge - Dark Mode */
+html.dark .username-badge {
+  background: rgba(59, 130, 246, 0.3) !important;
+  color: #93c5fd !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Toolbar - Dark Mode */
+html.dark .p-toolbar {
+  background: rgba(30, 41, 59, 0.9) !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.4) !important;
+}
+
+/* Input Search - Dark Mode */
+html.dark .search-input {
+  background: rgba(55, 65, 81, 0.95) !important;
+  border-color: rgba(75, 85, 99, 0.5) !important;
+  color: #f9fafb !important;
+}
+
+html.dark .search-input::placeholder {
+  color: #9ca3af !important;
+}
