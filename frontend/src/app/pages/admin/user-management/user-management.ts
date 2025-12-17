@@ -12,6 +12,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { UsuariosService, Usuario } from '../../../services/usuarios.service';
+import { RolesService, RolSimple } from '../../../services/roles.service';
 import { TagModule } from 'primeng/tag';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
@@ -45,6 +46,7 @@ import { TooltipModule } from 'primeng/tooltip';
 })
 export class UserManagement implements OnInit {
     private usuariosService = inject(UsuariosService);
+    private rolesService = inject(RolesService);
     private messageService = inject(MessageService);
     private confirmationService = inject(ConfirmationService);
     private fb = inject(FormBuilder);
@@ -55,14 +57,17 @@ export class UserManagement implements OnInit {
     submitted: boolean = false;
     isEditMode: boolean = false;
     loading: boolean = false;
+    rolesLoading: boolean = false;
+    dialogHeaderClass: string = '';
+    dialogHeaderStyle: any = {};
 
-    roles = [
-        { label: 'Administrador', value: 'ADMINISTRADOR' },
-        { label: 'Operador', value: 'OPERADOR' }
-    ];
+    // Roles dinámicos desde el backend
+    roles: { label: string, value: number }[] = [];
+    rolesData: RolSimple[] = [];
 
     ngOnInit() {
         this.initForm();
+        this.loadRoles();
         this.loadUsuarios();
     }
 
@@ -75,9 +80,32 @@ export class UserManagement implements OnInit {
             telefono: [''],
             username: ['', [Validators.required, Validators.minLength(3)]],
             password: [''],
-            rol: ['OPERADOR', Validators.required],
+            rol_id: [null, Validators.required],
             activo: [true],
             fecha_contratacion: ['']
+        });
+    }
+
+    loadRoles() {
+        this.rolesLoading = true;
+        this.rolesService.getRoles(true).subscribe({
+            next: (data) => {
+                this.rolesData = data;
+                // Convertir roles a formato para el dropdown
+                this.roles = data.map(rol => ({
+                    label: rol.nombre,
+                    value: rol.id
+                }));
+                this.rolesLoading = false;
+            },
+            error: (error) => {
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'Error al cargar roles'
+                });
+                this.rolesLoading = false;
+            }
         });
     }
 
@@ -100,14 +128,22 @@ export class UserManagement implements OnInit {
     }
 
     openNew() {
+        // Por defecto usar el primer rol de operador (generalmente id=6: Operador de Planta)
+        const operadorRol = this.rolesData.find(r => r.categoria === 'OPERADOR');
         this.form.reset({
-            rol: 'OPERADOR',
+            rol_id: operadorRol?.id || null,
             activo: true
         });
         this.form.get('password')?.setValidators([Validators.required, Validators.minLength(6)]);
         this.form.get('password')?.updateValueAndValidity();
         this.submitted = false;
         this.isEditMode = false;
+        this.dialogHeaderClass = 'dialog-new';
+        this.dialogHeaderStyle = {
+            'background': 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
+            'color': 'white'
+        };
+        console.log('Opening new user dialog, class:', this.dialogHeaderClass);
         this.usuarioDialog = true;
     }
 
@@ -119,7 +155,7 @@ export class UserManagement implements OnInit {
             email: usuario.email,
             telefono: usuario.telefono,
             username: usuario.username,
-            rol: usuario.rol,
+            rol_id: usuario.rol_id,
             activo: usuario.activo,
             fecha_contratacion: usuario.fecha_contratacion
         });
@@ -127,6 +163,12 @@ export class UserManagement implements OnInit {
         this.form.get('password')?.updateValueAndValidity();
         this.submitted = false;
         this.isEditMode = true;
+        this.dialogHeaderClass = 'dialog-edit';
+        this.dialogHeaderStyle = {
+            'background': 'linear-gradient(135deg, #f5af19 0%, #f12711 100%)',
+            'color': 'white'
+        };
+        console.log('Opening edit user dialog, class:', this.dialogHeaderClass);
         this.usuarioDialog = true;
     }
 
@@ -209,7 +251,7 @@ export class UserManagement implements OnInit {
                 apellido: usuario.apellido,
                 email: usuario.email,
                 telefono: usuario.telefono,
-                rol: usuario.rol,
+                rol_id: usuario.rol_id,
                 activo: usuario.activo,
                 fecha_contratacion: usuario.fecha_contratacion
             };
@@ -265,10 +307,16 @@ export class UserManagement implements OnInit {
         table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
     }
 
-    getRolSeverity(rol: string): 'success' | 'info' | 'warn' | 'danger' {
-        switch (rol) {
+    getRolSeverity(usuario: Usuario): 'success' | 'info' | 'warn' | 'danger' {
+        if (!usuario.rol) return 'info';
+        
+        switch (usuario.rol.categoria) {
             case 'ADMINISTRADOR':
                 return 'danger';
+            case 'JEFATURA':
+                return 'warn';
+            case 'SUPERVISOR':
+                return 'info';
             case 'OPERADOR':
                 return 'info';
             default:

@@ -23,7 +23,9 @@ from routers import (
     consumo_diario,
     cloro_libre,
     monitoreo_fisicoquimico,
-    auth
+    auth,
+    logs,
+    roles
 )
 
 # Crear la aplicación FastAPI
@@ -55,6 +57,7 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 # Incluir routers
 app.include_router(usuarios.router, prefix="/api/usuarios", tags=["Usuarios"])
+app.include_router(roles.router, tags=["Roles"])  # Ya tiene su prefix /api/roles
 app.include_router(quimicos.router, prefix="/api/quimicos", tags=["Químicos"])
 app.include_router(filtros.router, prefix="/api/filtros", tags=["Filtros"])
 app.include_router(consumo_mensual.router, prefix="/api/consumo-mensual", tags=["Consumo Mensual"])
@@ -64,6 +67,7 @@ app.include_router(consumo_diario.router, prefix="/api/consumo-diario", tags=["C
 app.include_router(cloro_libre.router, prefix="/api/cloro-libre", tags=["Cloro Libre"])
 app.include_router(monitoreo_fisicoquimico.router, prefix="/api/monitoreo-fisicoquimico", tags=["Monitoreo Fisicoquímico"])
 app.include_router(auth.router, prefix="/api/auth", tags=["Autenticación"])
+app.include_router(logs.router)  # Ya tiene prefix="/api/logs" en el router
 
 
 @app.on_event("startup")

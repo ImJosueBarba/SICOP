@@ -4,7 +4,7 @@ Modelo de Usuarios del sistema
 
 from datetime import datetime
 import enum
-from sqlalchemy import Column, Integer, String, Boolean, Date, DateTime, Enum
+from sqlalchemy import Column, Integer, String, Boolean, Date, DateTime, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 from . import Base
 
@@ -30,13 +30,19 @@ class Usuario(Base):
     # Campos de Autenticación
     username = Column(String(50), unique=True, index=True, nullable=False)
     hashed_password = Column(String(255), nullable=False)
-    rol = Column(Enum(UserRole, name='userole', create_type=False), default=UserRole.OPERADOR, nullable=False)
+    
+    # Sistema de roles
+    rol_id = Column(Integer, ForeignKey('roles.id'), nullable=False, index=True)
+    rol = Column(Enum(UserRole, name='userole', create_type=False), nullable=True)  # Legacy, mantener por compatibilidad
+    rol_antiguo = Column(String(20), nullable=True)  # Respaldo durante migración
+    
     foto_perfil = Column(String(500), nullable=True)  # URL o ruta de la foto de perfil
     
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
     # Relaciones
+    rol_obj = relationship("Rol", foreign_keys=[rol_id], lazy="joined")
     controles_operacion = relationship("ControlOperacion", back_populates="usuario")
     producciones_filtros = relationship("ProduccionFiltro", back_populates="usuario")
     consumos_diarios = relationship("ControlConsumoDiario", back_populates="usuario")
@@ -45,7 +51,8 @@ class Usuario(Base):
     consumos_mensuales = relationship("ConsumoQuimicoMensual", back_populates="usuario")
     
     def __repr__(self):
-        return f"<Usuario(id={self.id}, nombre='{self.nombre} {self.apellido}', rol='{self.rol.value}')>"
+        rol_nombre = self.rol_obj.nombre if self.rol_obj else 'Sin rol'
+        return f"<Usuario(id={self.id}, nombre='{self.nombre} {self.apellido}', rol='{rol_nombre}')>"
     
     @property
     def nombre_completo(self):
@@ -53,11 +60,16 @@ class Usuario(Base):
         return f"{self.nombre} {self.apellido}"
     
     @property
+    def rol(self):
+        """Retorna el objeto rol para serialización en schemas"""
+        return self.rol_obj
+    
+    @property
     def es_administrador(self):
         """Verifica si el usuario es administrador"""
-        return self.rol == UserRole.ADMINISTRADOR
+        return self.rol_obj and self.rol_obj.categoria == "ADMINISTRADOR"
     
     @property
     def es_operador(self):
         """Verifica si el usuario es operador"""
-        return self.rol == UserRole.OPERADOR
+        return self.rol_obj and self.rol_obj.categoria == "OPERADOR"

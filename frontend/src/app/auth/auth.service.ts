@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, tap, firstValueFrom } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { RolSimple } from '../services/roles.service';
 
 export interface User {
     id?: number;
@@ -12,11 +13,14 @@ export interface User {
     apellido: string;
     email?: string;
     telefono?: string;
-    rol: 'ADMINISTRADOR' | 'OPERADOR' | 'ADMIN';
+    rol: RolSimple;  // Objeto rol completo
+    rol_id: number;  // ID del rol
     activo: boolean;
     fecha_contratacion?: string;
     foto_perfil?: string;
     sub: string; // username in sub
+    es_administrador?: boolean;
+    es_operador?: boolean;
 }
 
 export interface AuthResponse {
@@ -82,12 +86,19 @@ export class AuthService {
 
     hasRole(allowedRoles: string[]): boolean {
         const user = this.currentUserSubject.value;
-        if (!user) return false;
-        // Allow ADMIN as alias for ADMINISTRADOR for backward compatibility
-        if (user.rol === 'ADMINISTRADOR' && allowedRoles.includes('ADMIN')) {
+        if (!user || !user.rol) return false;
+        
+        // Verificar contra la categoria del rol
+        if (allowedRoles.includes(user.rol.categoria)) {
             return true;
         }
-        return allowedRoles.includes(user.rol);
+        
+        // Mantener compatibilidad con ADMIN como alias de ADMINISTRADOR
+        if (user.rol.categoria === 'ADMINISTRADOR' && allowedRoles.includes('ADMIN')) {
+            return true;
+        }
+        
+        return false;
     }
 
     getUser(): User | null {
@@ -127,11 +138,14 @@ export class AuthService {
                     apellido: user.apellido,
                     email: user.email,
                     telefono: user.telefono,
-                    rol: user.rol,
+                    rol: user.rol,  // Objeto RolSimple
+                    rol_id: user.rol_id,
                     activo: user.activo,
                     fecha_contratacion: user.fecha_contratacion,
                     foto_perfil: user.foto_perfil,
-                    sub: user.username
+                    sub: user.username,
+                    es_administrador: user.es_administrador,
+                    es_operador: user.es_operador
                 });
             } catch (err: any) {
                 console.error('Error loading user:', err);

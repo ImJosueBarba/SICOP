@@ -47,7 +47,7 @@ export class Profile implements OnInit {
     this.authService.currentUser$.subscribe(user => {
       this.currentUser = user;
       if (user) {
-        this.profileImage = user.foto_perfil || null;
+        this.profileImage = user.foto_perfil ? `${this.apiUrl.replace('/api', '')}${user.foto_perfil}` : null;
         this.initForm();
       }
     });
@@ -78,7 +78,7 @@ export class Profile implements OnInit {
 
   onRemoveImage() {
     this.selectedFile = null;
-    this.profileImage = this.currentUser?.foto_perfil || null;
+    this.profileImage = this.currentUser?.foto_perfil ? `${this.apiUrl.replace('/api', '')}${this.currentUser.foto_perfil}` : null;
   }
 
   async onSubmit() {

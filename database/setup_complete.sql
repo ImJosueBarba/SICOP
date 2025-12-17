@@ -249,6 +249,103 @@ FROM usuarios
 ORDER BY rol DESC, username;
 
 -- ==================================================================
+-- PARTE 4: TABLA DE AUDITORÍA/LOGS
+-- ==================================================================
+
+-- Crear tabla de logs para auditoría
+CREATE TABLE IF NOT EXISTS logs_auditoria (
+    id SERIAL PRIMARY KEY,
+    usuario_id INTEGER REFERENCES usuarios(id) ON DELETE SET NULL,
+    usuario_nombre VARCHAR(200),  -- Guardamos nombre por si se elimina el usuario
+    accion VARCHAR(50) NOT NULL,  -- LOGIN, LOGOUT, CREATE, UPDATE, DELETE, etc.
+    entidad VARCHAR(100),          -- usuarios, control_operacion, produccion_filtros, etc.
+    entidad_id INTEGER,            -- ID del registro afectado
+    detalles TEXT,                 -- JSON con detalles adicionales
+    ip_address VARCHAR(50),
+    user_agent TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_logs_usuario_id (usuario_id),
+    INDEX idx_logs_accion (accion),
+    INDEX idx_logs_created_at (created_at),
+    INDEX idx_logs_entidad (entidad)
+);
+
+-- Comentario de la tabla
+COMMENT ON TABLE logs_auditoria IS 'Registro de auditoría de todas las acciones del sistema';
+
+-- ==================================================================
+-- PARTE 5: TABLA DE ROLES Y MIGRACIÓN
+-- ==================================================================
+
+-- Crear tabla de roles
+CREATE TABLE IF NOT EXISTS roles (
+    id SERIAL PRIMARY KEY,
+    codigo VARCHAR(50) UNIQUE NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT,
+    nivel_jerarquia INTEGER NOT NULL,
+    categoria VARCHAR(20) NOT NULL,
+    activo BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Comentarios de la tabla
+COMMENT ON TABLE roles IS 'Catálogo de roles del sistema con jerarquía y categorías';
+COMMENT ON COLUMN roles.codigo IS 'Código único del rol para uso en código';
+COMMENT ON COLUMN roles.nombre IS 'Nombre descriptivo del rol';
+COMMENT ON COLUMN roles.nivel_jerarquia IS 'Nivel jerárquico: 1=más alto, 4=más bajo';
+COMMENT ON COLUMN roles.categoria IS 'Categoría del rol: ADMINISTRADOR, JEFATURA, SUPERVISOR, OPERADOR';
+
+-- Insertar roles con jerarquía correcta
+INSERT INTO roles (codigo, nombre, nivel_jerarquia, categoria, descripcion) VALUES
+('COORD_GENERAL', 'Coordinación General', 1, 'ADMINISTRADOR', 'Administrador principal del sistema'),
+('JEF_OPERACION', 'Jefatura de Operación, Producción y Mantenimiento', 2, 'JEFATURA', 'Responsable de operaciones de la planta'),
+('GEST_AMBIENTAL', 'Gestión Ambiental y Calidad', 3, 'SUPERVISOR', 'Supervisor de gestión ambiental y control de calidad'),
+('ASIST_TECNICO', 'Asistente Técnico', 3, 'SUPERVISOR', 'Asistente técnico de operaciones'),
+('SUPERVISOR_TEC', 'Supervisor Técnico', 3, 'SUPERVISOR', 'Supervisor técnico de campo'),
+('OP_CAPTACION', 'Operador de Captación', 4, 'OPERADOR', 'Operador en área de captación'),
+('OP_PLANTA', 'Operador de Planta', 4, 'OPERADOR', 'Operador en planta de tratamiento'),
+('OP_VERGEL', 'Operador de Vergel', 4, 'OPERADOR', 'Operador en área de Vergel')
+ON CONFLICT (codigo) DO NOTHING;
+
+-- Crear índices para roles
+CREATE INDEX IF NOT EXISTS idx_roles_categoria ON roles(categoria);
+CREATE INDEX IF NOT EXISTS idx_roles_activo ON roles(activo);
+CREATE INDEX IF NOT EXISTS idx_roles_nivel ON roles(nivel_jerarquia);
+
+-- Migrar usuarios existentes a la nueva estructura
+-- Paso 1: Agregar columna temporal para guardar el rol antiguo
+ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS rol_antiguo VARCHAR(20);
+UPDATE usuarios SET rol_antiguo = rol::text WHERE rol_antiguo IS NULL;
+
+-- Paso 2: Agregar nueva columna rol_id
+ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS rol_id INTEGER REFERENCES roles(id);
+
+-- Paso 3: Mapear roles antiguos a nuevos
+UPDATE usuarios SET rol_id = (SELECT id FROM roles WHERE codigo = 'COORD_GENERAL') 
+WHERE rol::text = 'ADMINISTRADOR' AND rol_id IS NULL;
+
+UPDATE usuarios SET rol_id = (SELECT id FROM roles WHERE codigo = 'OP_PLANTA') 
+WHERE rol::text = 'OPERADOR' AND rol_id IS NULL;
+
+-- Paso 4: Hacer rol_id NOT NULL después de migrar datos
+ALTER TABLE usuarios ALTER COLUMN rol_id SET NOT NULL;
+
+-- Paso 5: Eliminar la restricción de administrador único del enum
+DROP INDEX IF EXISTS idx_single_admin;
+
+-- Paso 6: Eliminar columna rol antigua (comentar si quieres mantenerla temporalmente)
+-- ALTER TABLE usuarios DROP COLUMN IF EXISTS rol;
+-- DROP TYPE IF EXISTS userole;
+
+-- Paso 7: Crear índice en la nueva relación
+CREATE INDEX IF NOT EXISTS idx_usuarios_rol_id ON usuarios(rol_id);
+
+-- Analizar tabla para optimizar consultas
+ANALYZE usuarios;
+ANALYZE roles;
+
+-- ==================================================================
 -- IMPORTANTE: EJECUTAR DESPUÉS DE ESTE SCRIPT
 -- ==================================================================
 -- Usar Python para actualizar los hashes de contraseñas:

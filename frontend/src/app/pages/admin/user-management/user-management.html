@@ -66,7 +66,7 @@
                     <th pSortableColumn="telefono" style="width: 12%">
                         Teléfono <p-sortIcon field="telefono"></p-sortIcon>
                     </th>
-                    <th pSortableColumn="rol" style="width: 10%">
+                    <th pSortableColumn="rol" style="width: 10%; text-align: center;">
                         Rol <p-sortIcon field="rol"></p-sortIcon>
                     </th>
                     <th pSortableColumn="activo" style="width: 8%">
@@ -88,10 +88,10 @@
                     </td>
                     <td>{{ usuario.email || '-' }}</td>
                     <td>{{ usuario.telefono || '-' }}</td>
-                    <td>
+                    <td style="text-align: center;">
                         <p-tag 
-                            [value]="usuario.rol === 'ADMINISTRADOR' ? 'Admin' : 'Operador'" 
-                            [severity]="getRolSeverity(usuario.rol)">
+                            [value]="usuario.rol?.nombre || 'Sin rol'" 
+                            [severity]="getRolSeverity(usuario)">
                         </p-tag>
                     </td>
                     <td>
@@ -148,6 +148,8 @@
     <p-dialog 
         [(visible)]="usuarioDialog" 
         [header]="isEditMode ? 'Editar Usuario' : 'Nuevo Usuario'"
+        [styleClass]="dialogHeaderClass"
+        [contentStyle]="dialogHeaderStyle"
         [modal]="true" 
         [style]="{ width: '600px' }"
         [draggable]="false"
@@ -201,17 +203,22 @@
                     </div>
 
                     <div class="form-field">
-                        <label for="rol" class="required">Rol</label>
+                        <label for="rol_id" class="required">Rol</label>
                         <p-select 
-                            id="rol"
-                            formControlName="rol" 
+                            id="rol_id"
+                            formControlName="rol_id" 
                             [options]="roles"
                             optionLabel="label"
                             optionValue="value"
                             placeholder="Seleccione un rol"
+                            [loading]="rolesLoading"
+                            appendTo="body"
+                            [showClear]="false"
+                            [filter]="true"
+                            filterPlaceholder="Buscar rol"
                             [style]="{'width': '100%'}">
                         </p-select>
-                        <small class="p-error" *ngIf="submitted && form.get('rol')?.hasError('required')">
+                        <small class="p-error" *ngIf="submitted && form.get('rol_id')?.hasError('required')">
                             Rol es requerido
                         </small>
                     </div>

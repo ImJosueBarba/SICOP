@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 
 from core.database import get_db
 from core.config import settings
@@ -27,7 +27,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db: Se
     except JWTError:
         raise credentials_exception
     
-    user = db.query(Usuario).filter(Usuario.username == token_data.username).first()
+    user = db.query(Usuario).options(joinedload(Usuario.rol_obj)).filter(Usuario.username == token_data.username).first()
     if user is None:
         raise credentials_exception
     return user

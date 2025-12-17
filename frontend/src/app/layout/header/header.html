@@ -42,12 +42,12 @@
           class="user-menu-trigger"
           (click)="toggleUserMenu()">
           <div class="user-avatar">
-            <img *ngIf="currentUser?.foto_perfil" [src]="currentUser.foto_perfil" alt="Perfil" />
+            <img *ngIf="currentUser?.foto_perfil" [src]="'http://localhost:8000' + currentUser.foto_perfil" alt="Perfil" />
             <i *ngIf="!currentUser?.foto_perfil" class="pi pi-user"></i>
           </div>
           <div class="user-info">
             <span class="user-name">{{ currentUser?.nombre || 'Usuario' }}</span>
-            <span class="user-role">{{ currentUser?.rol || 'Rol' }}</span>
+            <span class="user-role">{{ currentUser?.rol?.nombre || 'Rol' }}</span>
           </div>
           <i class="pi pi-chevron-down dropdown-icon"></i>
         </button>
@@ -56,7 +56,7 @@
         <div class="user-dropdown" [class.show]="showUserMenu">
           <div class="dropdown-header">
             <div class="dropdown-user-avatar">
-              <img *ngIf="currentUser?.foto_perfil" [src]="currentUser.foto_perfil" alt="Perfil" />
+              <img *ngIf="currentUser?.foto_perfil" [src]="'http://localhost:8000' + currentUser.foto_perfil" alt="Perfil" />
               <i *ngIf="!currentUser?.foto_perfil" class="pi pi-user"></i>
             </div>
             <div class="dropdown-user-info">

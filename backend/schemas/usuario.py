@@ -6,6 +6,7 @@ from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from typing import Optional
 from datetime import date, datetime
 from models.usuario import UserRole
+from .rol import RolSimple
 
 
 # Schema base
@@ -21,7 +22,7 @@ class UsuarioBase(BaseModel):
     
     # Auth fields
     username: str = Field(..., min_length=3, max_length=50)
-    rol: UserRole = UserRole.OPERADOR
+    rol_id: int = Field(..., gt=0, description="ID del rol asignado")
 
 
 # Schema para crear un usuario
@@ -39,16 +40,27 @@ class UsuarioUpdate(BaseModel):
     telefono: Optional[str] = Field(None, max_length=20)
     activo: Optional[bool] = None
     fecha_contratacion: Optional[date] = None
-    rol: Optional[UserRole] = None
+    rol_id: Optional[int] = Field(None, gt=0, description="ID del rol asignado")
     password: Optional[str] = Field(None, min_length=6)
     foto_perfil: Optional[str] = None
 
 
 # Schema para respuesta
-class UsuarioResponse(UsuarioBase):
+class UsuarioResponse(BaseModel):
     """Schema de respuesta con datos completos del usuario"""
     id: int
+    nombre: str
+    apellido: str
     nombre_completo: str
+    username: str
+    email: Optional[EmailStr] = None
+    telefono: Optional[str] = None
+    activo: bool
+    fecha_contratacion: Optional[date] = None
+    foto_perfil: Optional[str] = None
+    rol: RolSimple  # Información del rol
+    rol_id: int
+    # Mantener compatibilidad con código anterior
     es_administrador: bool
     es_operador: bool
     created_at: datetime
@@ -65,7 +77,10 @@ class UsuarioList(BaseModel):
     apellido: str
     nombre_completo: str
     username: str
-    rol: UserRole
+    email: Optional[EmailStr] = None
+    telefono: Optional[str] = None
+    rol: RolSimple  # Información del rol
+    rol_id: int
     activo: bool
     
     model_config = ConfigDict(from_attributes=True)

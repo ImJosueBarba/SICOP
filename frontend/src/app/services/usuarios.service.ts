@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { RolSimple } from './roles.service';
 
 export interface Usuario {
   id?: number;
@@ -10,7 +11,8 @@ export interface Usuario {
   telefono?: string;
   username: string;
   password?: string;
-  rol: 'ADMINISTRADOR' | 'OPERADOR';
+  rol: RolSimple;  // Objeto rol completo
+  rol_id: number;  // ID del rol
   activo: boolean;
   fecha_contratacion?: string;
   nombre_completo?: string;
@@ -27,7 +29,7 @@ export interface UsuarioCreate {
   telefono?: string;
   username: string;
   password: string;
-  rol: 'ADMINISTRADOR' | 'OPERADOR';
+  rol_id: number;  // Cambiar de enum a ID
   activo: boolean;
   fecha_contratacion?: string;
 }
@@ -37,7 +39,7 @@ export interface UsuarioUpdate {
   apellido?: string;
   email?: string;
   telefono?: string;
-  rol?: 'ADMINISTRADOR' | 'OPERADOR';
+  rol_id?: number;  // Cambiar de enum a ID
   activo?: boolean;
   fecha_contratacion?: string;
   password?: string;

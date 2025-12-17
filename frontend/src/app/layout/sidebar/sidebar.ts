@@ -41,9 +41,15 @@ export class Sidebar implements OnInit {
       roles: ['ADMINISTRADOR']
     },
     {
+      label: 'Logs de Auditoría',
+      icon: 'pi-history',
+      route: '/logs',
+      roles: ['ADMINISTRADOR']
+    },
+    {
       label: 'Matrices',
       icon: 'pi-table',
-      roles: ['OPERADOR', 'ADMINISTRADOR'],
+      roles: ['OPERADOR'],
       children: [
         {
           label: 'Control de Operación',
@@ -66,7 +72,7 @@ export class Sidebar implements OnInit {
     {
       label: 'Producción',
       icon: 'pi-chart-line',
-      roles: ['OPERADOR', 'ADMINISTRADOR'],
+      roles: ['OPERADOR'],
       children: [
         {
           label: 'Producción de Filtros',
@@ -89,7 +95,7 @@ export class Sidebar implements OnInit {
     {
       label: 'Reportes',
       icon: 'pi-file-excel',
-      roles: ['OPERADOR', 'ADMINISTRADOR'],
+      roles: ['OPERADOR'],
       children: [
         {
           label: 'Control de Operación',
@@ -144,7 +150,10 @@ export class Sidebar implements OnInit {
 
   hasAccess(roles?: string[]): boolean {
     if (!roles || roles.length === 0) return true;
-    return roles.includes(this.currentUser?.rol);
+    if (!this.currentUser || !this.currentUser.rol) return false;
+    
+    // Verificar contra la categoría del rol
+    return roles.includes(this.currentUser.rol.categoria);
   }
 
   isActive(route?: string): boolean {

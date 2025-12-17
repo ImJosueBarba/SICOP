@@ -74,6 +74,12 @@ export const routes: Routes = [
     data: { roles: ['ADMINISTRADOR'] }
   },
   {
+    path: 'logs',
+    loadComponent: () => import('./pages/admin/logs/logs').then(m => m.Logs),
+    canActivate: [authGuard],
+    data: { roles: ['ADMINISTRADOR'] }
+  },
+  {
     path: 'home',
     component: Home,
     canActivate: [authGuard]

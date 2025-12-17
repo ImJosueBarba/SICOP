@@ -297,3 +297,190 @@ html.dark .search-input {
 html.dark .search-input::placeholder {
   color: #9ca3af !important;
 }
+
+/* Dialog (Modal) - Dark Mode - Estilos Globales */
+html.dark .p-dialog,
+html.dark .p-component-overlay-enter,
+.dark .p-dialog,
+.dark .p-component-overlay-enter {
+  background: rgba(15, 23, 42, 0.95) !important;
+}
+
+html.dark .p-dialog .p-dialog-content,
+.dark .p-dialog .p-dialog-content {
+  background: #1e293b !important;
+  color: #f9fafb !important;
+}
+
+html.dark .p-dialog .p-dialog-header,
+.dark .p-dialog .p-dialog-header {
+  background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 100%) !important;
+  color: #f9fafb !important;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.3) !important;
+}
+
+html.dark .p-dialog .p-dialog-footer,
+.dark .p-dialog .p-dialog-footer {
+  background: #1e293b !important;
+  border-top: 1px solid rgba(75, 85, 99, 0.3) !important;
+}
+
+html.dark .p-dialog .p-dialog-header .p-dialog-title,
+.dark .p-dialog .p-dialog-header .p-dialog-title {
+  color: #f9fafb !important;
+}
+
+html.dark .p-dialog .p-dialog-header .p-dialog-header-icon,
+.dark .p-dialog .p-dialog-header .p-dialog-header-icon {
+  color: #f9fafb !important;
+}
+
+html.dark .p-dialog .p-dialog-header .p-dialog-header-icon:hover,
+.dark .p-dialog .p-dialog-header .p-dialog-header-icon:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Form Fields - Dark Mode */
+html.dark .p-dialog label,
+.dark .p-dialog label {
+  color: #d1d5db !important;
+}
+
+html.dark .p-dialog input,
+html.dark .p-dialog .p-inputtext,
+.dark .p-dialog input,
+.dark .p-dialog .p-inputtext {
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+html.dark .p-dialog input::placeholder,
+.dark .p-dialog input::placeholder {
+  color: #9ca3af !important;
+}
+
+html.dark .p-dialog input:focus,
+html.dark .p-dialog .p-inputtext:focus,
+.dark .p-dialog input:focus,
+.dark .p-dialog .p-inputtext:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25) !important;
+}
+
+/* Select Dropdown - Dark Mode */
+html.dark .p-dialog .p-select,
+.dark .p-dialog .p-select {
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+html.dark .p-dialog .p-select:hover,
+.dark .p-dialog .p-select:hover {
+  border-color: #6b7280 !important;
+}
+
+html.dark .p-dialog .p-select .p-select-label,
+.dark .p-dialog .p-select .p-select-label {
+  color: #f9fafb !important;
+}
+
+html.dark .p-dialog .p-select .p-select-label.p-placeholder,
+.dark .p-dialog .p-select .p-select-label.p-placeholder {
+  color: #9ca3af !important;
+}
+
+html.dark .p-select-overlay,
+.dark .p-select-overlay {
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark .p-select-overlay .p-select-filter,
+.dark .p-select-overlay .p-select-filter {
+  background: #4b5563 !important;
+  border-color: #6b7280 !important;
+  color: #f9fafb !important;
+}
+
+html.dark .p-select-overlay .p-select-filter::placeholder,
+.dark .p-select-overlay .p-select-filter::placeholder {
+  color: #9ca3af !important;
+}
+
+html.dark .p-select-option,
+.dark .p-select-option {
+  color: #f9fafb !important;
+}
+
+html.dark .p-select-option:hover,
+.dark .p-select-option:hover {
+  background: #4b5563 !important;
+}
+
+html.dark .p-select-option.p-select-option-selected,
+.dark .p-select-option.p-select-option-selected {
+  background: rgba(59, 130, 246, 0.3) !important;
+  color: #93c5fd !important;
+}
+
+/* Password Field - Dark Mode */
+html.dark .p-dialog .p-password input,
+.dark .p-dialog .p-password input {
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+html.dark .p-dialog .p-password .p-password-toggle-icon,
+.dark .p-dialog .p-password .p-password-toggle-icon {
+  color: #9ca3af !important;
+}
+
+html.dark .p-password-overlay,
+.dark .p-password-overlay {
+  background: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+/* Error Messages - Dark Mode */
+html.dark .p-dialog small.p-error,
+.dark .p-dialog small.p-error {
+  color: #fca5a5 !important;
+}
+
+/* Dialog Base Styles */
+.p-dialog {
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+.p-dialog .p-dialog-content {
+  padding: 2rem !important;
+}
+
+.p-dialog .p-dialog-footer {
+  padding: 1.5rem !important;
+  border-top: 1px solid #e9ecef !important;
+}
+
+/* Dialog Header Colors - New User (Green) */
+.p-dialog-mask.dialog-new .p-dialog .p-dialog-header,
+.dialog-new .p-dialog-header {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+  color: white !important;
+  padding: 1.5rem !important;
+  border-radius: 0 !important;
+}
+
+/* Dialog Header Colors - Edit User (Yellow/Orange) */
+.p-dialog-mask.dialog-edit .p-dialog .p-dialog-header,
+.dialog-edit .p-dialog-header {
+  background: linear-gradient(135deg, #f5af19 0%, #f12711 100%) !important;
+  color: white !important;
+  padding: 1.5rem !important;
+  border-radius: 0 !important;
+}

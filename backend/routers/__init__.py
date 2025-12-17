@@ -4,6 +4,7 @@ Módulo de routers para la API
 
 from . import (
     usuarios,
+    roles,
     quimicos,
     filtros,
     consumo_mensual,
@@ -16,6 +17,7 @@ from . import (
 
 __all__ = [
     "usuarios",
+    "roles",
     "quimicos",
     "filtros",
     "consumo_mensual",
